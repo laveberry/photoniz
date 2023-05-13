@@ -5,6 +5,7 @@ import axios from 'axios';
 import SearchHeader from "./components/Common/SearchHeader";
 import Layout from "./components/Common/Layout";
 import HomeContainer from "./components/Common/HomeContainer";
+import '@fortawesome/fontawesome-free/js/all.js'
 
 
 function App() {
