@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.e6c13ad2.css",
-    "main.js": "/static/js/main.518afbb9.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "index.html": "/index.html",
-    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
-    "main.518afbb9.js.map": "/static/js/main.518afbb9.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/now-ui-dashboard-react/static/css/main.e491216c.css",
+    "main.js": "/now-ui-dashboard-react/static/js/main.27a167a3.js",
+    "static/media/bg5.jpg": "/now-ui-dashboard-react/static/media/bg5.d60a95eb31d6400f802f.jpg",
+    "static/media/mike.jpg": "/now-ui-dashboard-react/static/media/mike.d34d0690a264ad046861.jpg",
+    "static/media/nucleo-outline.eot": "/now-ui-dashboard-react/static/media/nucleo-outline.56814a6b7240045e1494.eot",
+    "static/media/nucleo-outline.ttf": "/now-ui-dashboard-react/static/media/nucleo-outline.1102ed9b2d16dccdec05.ttf",
+    "static/media/nucleo-outline.woff": "/now-ui-dashboard-react/static/media/nucleo-outline.1a1036e643f97457ec5f.woff",
+    "static/media/nucleo-outline.woff2": "/now-ui-dashboard-react/static/media/nucleo-outline.802141dd0dcc63b21cbb.woff2",
+    "static/media/logo-white.svg": "/now-ui-dashboard-react/static/media/logo-white.6a2b2982a8cdf50bd26935af1bc19b05.svg",
+    "index.html": "/now-ui-dashboard-react/index.html",
+    "main.e491216c.css.map": "/now-ui-dashboard-react/static/css/main.e491216c.css.map",
+    "main.27a167a3.js.map": "/now-ui-dashboard-react/static/js/main.27a167a3.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.518afbb9.js"
+    "static/css/main.e491216c.css",
+    "static/js/main.27a167a3.js"
   ]
 }
