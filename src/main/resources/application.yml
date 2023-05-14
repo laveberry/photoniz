@@ -1,1 +1,24 @@
+spring:
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_IP}:${DB_PORT}/${DB_DATABASE}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  flyway:
+    locations: classpath:/db
+    sql-migration-suffixes: sql
+    baseline-version: 0
+    baseline-on-migrate: true
+
+server:
+  port: 8080
 
