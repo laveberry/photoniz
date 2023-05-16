@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.service;
+package com.laveberry.photoniz.user.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

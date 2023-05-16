@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.controller;
+package com.laveberry.photoniz;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
