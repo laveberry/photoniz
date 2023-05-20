@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.service;
+package com.laveberry.photoniz.user.service;
 
 
 public interface UserService {

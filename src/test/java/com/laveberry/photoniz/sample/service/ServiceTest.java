@@ -1,7 +1,7 @@
 package com.laveberry.photoniz.sample.service;
 
-import com.laveberry.photoniz.sample.BaseSpringBootTest;
-import com.laveberry.photoniz.service.UserService;
+import com.laveberry.photoniz.common.BaseSpringBootTest;
+import com.laveberry.photoniz.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
