@@ -38,12 +38,13 @@ public class Work extends BaseTimeEntity { //db매칭
     private String location; //지역? 작업위치?
 
     @Builder
-    public Work(int work_profile_id, int author_id, int customer_id, int work_state, int work_flag, double price, String location) {
+    public Work(Integer work_profile_id, Integer author_id, Integer customer_id, Integer work_state, Integer work_flag, LocalDateTime work_time, double price, String location) {
         this.work_profile_id = work_profile_id;
         this.author_id = author_id;
         this.customer_id = customer_id;
         this.work_state = work_state;
         this.work_flag = work_flag;
+        this.work_time = work_time;
         this.price = price;
         this.location = location;
     }

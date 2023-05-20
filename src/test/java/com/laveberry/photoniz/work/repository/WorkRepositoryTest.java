@@ -29,12 +29,15 @@ class WorkRepositoryTest extends BaseSpringBootTest {
     @Test
     public void WorkEntity_등록(){
         LocalDateTime now = LocalDateTime.now();
+        //LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+
         workRepository.save(Work.builder()
                 .work_profile_id(777)
                 .author_id(123)
                 .customer_id(1004)
                 .work_state(2)
                 .work_flag(1)
+                .work_time(now)
                 .price(65000)
                 .build());
 
@@ -45,11 +48,11 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         Work work = workList.get(0);
 
         System.out.println("work_id = "+work.getWork_id()+" / work_flag = "+work.getWork_flag()+" / price ="+work.getPrice());
+        System.out.println("work_time = " + work.getWork_time());
+        //생성일&수정일 자동등록
+        System.out.println("createTime =" + work.getCreateDate() + " / getModifiedDate = " + work.getModifiedDate() );
 
-        assertThat(work.getWork_time()).isAfter(now);
-
-        System.out.println("work_time = "+work.getWork_time());
-
+        assertThat(work.getCreateDate()).isAfter(now);
     }
 
 }
