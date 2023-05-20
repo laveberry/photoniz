@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.sample;
+package com.laveberry.photoniz.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

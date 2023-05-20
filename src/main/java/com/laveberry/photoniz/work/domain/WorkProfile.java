@@ -32,7 +32,7 @@ public class WorkProfile {
 
     private Integer work_type; //작업유형
 
-    @ColumnDefault("N")
+    @ColumnDefault("0")
     private String use_yn; //사용여부
 
     @Builder

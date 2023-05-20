@@ -1,6 +1,6 @@
 package com.laveberry.photoniz.sample.controller;
 
-import com.laveberry.photoniz.sample.BaseSpringBootTest;
+import com.laveberry.photoniz.common.BaseSpringBootTest;
 import org.junit.jupiter.api.Test;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 

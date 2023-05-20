@@ -1,6 +1,6 @@
 package com.laveberry.photoniz.work.repository;
 
-import com.laveberry.photoniz.sample.BaseSpringBootTest;
+import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.work.domain.Work;
 import org.aspectj.lang.annotation.After;
 import org.assertj.core.api.Assertions;
