@@ -2,13 +2,16 @@ package com.laveberry.photoniz.user.model;
 
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Table(name = "users")
+@Getter
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     private String name;
@@ -17,10 +20,10 @@ public class User {
 
     private String password;
 
-    private String phone;
+    private Integer phone;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role user_role;
 
     private String address;
 
