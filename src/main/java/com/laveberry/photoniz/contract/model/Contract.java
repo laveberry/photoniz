@@ -1,9 +1,12 @@
 package com.laveberry.photoniz.contract.model;
 
 import com.laveberry.photoniz.common.BaseTimeEntity;
+import com.laveberry.photoniz.work.domain.Work;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
@@ -11,7 +14,7 @@ import java.time.LocalDateTime;
 /**
  계약 테이블
  */
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
 public class Contract extends BaseTimeEntity {
@@ -36,6 +39,9 @@ public class Contract extends BaseTimeEntity {
 
     private LocalDateTime end_date;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn("work_id")
+    private Work work;
 
 
 }
