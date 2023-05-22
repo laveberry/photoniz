@@ -26,7 +26,10 @@ public class Contract extends BaseTimeEntity {
     private Integer user_id;
 
     //외래키
-    private Integer work_id;
+    //private Integer work_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WORK_ID")
+    private Work work;
 
     @ColumnDefault("0") //대기0, 진행1, 정지9, 완료10
     private String work_progress;
@@ -38,10 +41,5 @@ public class Contract extends BaseTimeEntity {
     private LocalDateTime start_date;
 
     private LocalDateTime end_date;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn("work_id")
-    private Work work;
-
 
 }
