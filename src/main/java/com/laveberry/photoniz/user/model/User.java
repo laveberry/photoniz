@@ -2,11 +2,14 @@ package com.laveberry.photoniz.user.model;
 
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
