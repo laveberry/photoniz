@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+@DisplayName("유저 서비스")
 public class UserServiceTest extends BaseSpringBootTest {
 
     @Autowired
@@ -28,7 +29,7 @@ public class UserServiceTest extends BaseSpringBootTest {
                 .name("test")
                 .user_role(Role.ADMIN)
                 .address("주소")
-                .phone(12345678)
+                .phone("01012345678")
                 .password("password")
                 .email("test@test.com")
                 .build();
@@ -46,10 +47,10 @@ public class UserServiceTest extends BaseSpringBootTest {
         String email = "test@test.com";
         //when
 //        User user = userService.findUser(email);
-        List<User> all = userRepository.findAll();
-        for (User user1 : all) {
-            System.out.println("user1 = " + user1);
-        }
+//        List<User> all = userRepository.findAll();
+//        for (User user1 : all) {
+//            System.out.println("user1 = " + user1);
+//        }
 
         //then
 //        System.out.println("user = " + user.getId());

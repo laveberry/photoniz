@@ -1,11 +1,12 @@
 package com.laveberry.photoniz.user.model;
 
+import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "`user`")
 @Getter
 @Builder
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class User {
 
     private String password;
 
-    private Integer phone;
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     private Role user_role;
