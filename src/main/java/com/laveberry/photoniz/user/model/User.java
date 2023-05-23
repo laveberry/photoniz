@@ -1,9 +1,11 @@
 package com.laveberry.photoniz.user.model;
 
-import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "`user`")
