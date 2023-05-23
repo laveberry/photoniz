@@ -3,10 +3,10 @@ package com.laveberry.photoniz.work.domain;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.contract.model.Contract;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.lang.model.element.Name;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class Work extends BaseTimeEntity { //db매칭
         this.location = location;
     }
 
-    public void addContract(final Contract contract){
+    public void addContract(final Contract contract) {
         contracts.add(contract);
         contract.setWork(this);
     }

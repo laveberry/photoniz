@@ -8,9 +8,10 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class UserRepositoryImpl implements UserRepository{
+public class UserRepositoryImpl implements UserRepository {
 
     private final UserJpaRepository userJpaRepository;
+
     @Override
     public User findUser(String email) {
         Optional<User> user = userJpaRepository.findByEmail(email);

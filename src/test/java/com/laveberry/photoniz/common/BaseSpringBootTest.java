@@ -12,7 +12,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.laveberry.photoniz.common.BaseSpringBootTest.*;
+import static com.laveberry.photoniz.common.BaseSpringBootTest.WORK;
+
 @Disabled
 @DbUnitConfiguration(databaseConnection = "dbUnitDatabaseConnection")
 @DatabaseSetup(value = {WORK
