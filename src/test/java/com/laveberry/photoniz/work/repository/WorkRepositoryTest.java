@@ -2,6 +2,7 @@ package com.laveberry.photoniz.work.repository;
 
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.work.domain.Work;
+import com.laveberry.photoniz.work.enums.WorkType;
 import org.aspectj.lang.annotation.After;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -34,6 +35,7 @@ class WorkRepositoryTest extends BaseSpringBootTest {
 
         workRepository.save(Work.builder()
                 .author_id(123)
+                .work_type(String.valueOf(WorkType.PERSONAL))
                 .price(65000)
                 .build());
 
@@ -55,8 +57,6 @@ class WorkRepositoryTest extends BaseSpringBootTest {
     void findWork() {
         List<Work> works = workRepository.findAll();
         assertThat(works.get(0).getWork_type()).isEqualTo("PHOTO");
-
-
     }
 
 }

@@ -3,11 +3,9 @@ package com.laveberry.photoniz.work.domain;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.contract.model.Contract;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.lang.model.element.Name;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,8 @@ public class Work extends BaseTimeEntity { //db매칭
     @Column(length = 100)
     private String location; //지역? 작업위치?
 
-    @OneToMany(mappedBy = "work")
+    //영속성, 고아객체
+    @OneToMany(mappedBy = "work", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Contract> contracts = new ArrayList<>();
 
     @Builder
