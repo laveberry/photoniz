@@ -3,10 +3,7 @@ package com.laveberry.photoniz.work.domain;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.contract.model.Contract;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.lang.model.element.Name;
 import java.time.LocalDateTime;
