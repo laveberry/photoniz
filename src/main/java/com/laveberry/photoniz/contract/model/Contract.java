@@ -31,10 +31,6 @@ public class Contract extends BaseTimeEntity {
     @ColumnDefault("0") //대기0, 진행1, 정지9, 완료10
     private int work_progress;
 
-    private LocalDateTime created_at;
-
-    private LocalDateTime updated_at;
-
     private LocalDateTime start_date;
 
     private LocalDateTime end_date;

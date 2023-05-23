@@ -1,0 +1,3 @@
+<dataset>
+    <user USER_ID="1" NAME="test" EMAIL="test@test.com" PASSWORD="1234" PHONE="01012345678" USER_ROLE="ADMIN" ADDRESS="강남" />
+</dataset>
