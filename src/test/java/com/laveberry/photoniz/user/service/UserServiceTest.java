@@ -40,17 +40,16 @@ public class UserServiceTest extends BaseSpringBootTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("유저 조회")
     void findUser() {
 
         //given
         String email = "test@test.com";
+
         //when
-        List<User> all = userRepository.findAll();
-        for (User user1 : all) {
-            System.out.println("user1 = " + user1.getId());
-        }
+        User user = userRepository.findByEmail(email).get();
+
         //then
+        assertThat(user.getName()).isEqualTo("test");
     }
 }
