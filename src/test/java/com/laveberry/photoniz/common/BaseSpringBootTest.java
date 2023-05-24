@@ -12,13 +12,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.laveberry.photoniz.common.BaseSpringBootTest.USER;
 import static com.laveberry.photoniz.common.BaseSpringBootTest.WORK;
 
 @Disabled
 @DbUnitConfiguration(databaseConnection = "dbUnitDatabaseConnection")
-@DatabaseSetup(value = {WORK
+@DatabaseSetup(value = {WORK, USER
 }, type = DatabaseOperation.CLEAN_INSERT)
-@DatabaseTearDown(value = {WORK
+@DatabaseTearDown(value = {WORK, USER
 }, type = DatabaseOperation.DELETE_ALL)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
