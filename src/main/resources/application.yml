@@ -27,3 +27,9 @@ decorator:
     p6spy:
       logging: sysout
       enable-logging: true
+
+logging:
+  level:
+    root: debug
+    org.springframework.web: debug
+    org.hibernate: error

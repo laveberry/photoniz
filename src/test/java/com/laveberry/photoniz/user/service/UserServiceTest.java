@@ -1,6 +1,7 @@
 package com.laveberry.photoniz.user.service;
 
 import com.laveberry.photoniz.common.BaseSpringBootTest;
+import com.laveberry.photoniz.user.domain.SignUpUserModel;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.model.User;
 import com.laveberry.photoniz.user.repository.UserJpaRepository;
@@ -25,18 +26,15 @@ public class UserServiceTest extends BaseSpringBootTest {
     @Test
     @DisplayName("유저 생성")
     void saveUser() {
-        User user = User.builder()
-                .name("test")
-                .user_role(Role.ADMIN)
-                .address("주소")
-                .phone("01012345678")
-                .password("password")
-                .email("test@test.com")
-                .build();
+
+        SignUpUserModel signUpUserModel =
+                new SignUpUserModel("test@gmail.com", "테스트유저", "1234", "123123123", "서울");
+
+        User user = userService.signUp(signUpUserModel);
 
         String email = userRepository.save(user).getEmail();
 
-        assertThat(email).isEqualTo("test@test.com");
+        assertThat(email).isEqualTo("test@gmail.com");
     }
 
     @Test
