@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.user.domain;
+package com.laveberry.photoniz.user.model;
 
 import lombok.Builder;
 

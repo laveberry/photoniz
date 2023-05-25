@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.user.model;
+package com.laveberry.photoniz.user.domain;
 
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;

@@ -3,10 +3,10 @@ package com.laveberry.photoniz.user.service;
 import com.laveberry.photoniz.common.util.Encrypt;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.user.domain.CreateUserModel;
-import com.laveberry.photoniz.user.domain.SignUpUserModel;
+import com.laveberry.photoniz.user.model.CreateUserModel;
+import com.laveberry.photoniz.user.model.SignUpUserModel;
 import com.laveberry.photoniz.user.enums.Role;
-import com.laveberry.photoniz.user.model.User;
+import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
                 .address(signUpUserModel.address())
                 .build();
 
-        return  createUser(createUserModel);
+        return createUser(createUserModel);
     }
 
     private User createUser(CreateUserModel createUserModel) {

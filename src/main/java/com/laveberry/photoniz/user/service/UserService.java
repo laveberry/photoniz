@@ -1,8 +1,8 @@
 package com.laveberry.photoniz.user.service;
 
 
-import com.laveberry.photoniz.user.domain.SignUpUserModel;
-import com.laveberry.photoniz.user.model.User;
+import com.laveberry.photoniz.user.model.SignUpUserModel;
+import com.laveberry.photoniz.user.domain.User;
 
 public interface UserService {
 

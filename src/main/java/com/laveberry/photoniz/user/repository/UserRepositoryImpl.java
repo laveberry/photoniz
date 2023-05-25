@@ -1,7 +1,6 @@
 package com.laveberry.photoniz.user.repository;
 
-import com.laveberry.photoniz.exception.CustomException;
-import com.laveberry.photoniz.user.model.User;
+import com.laveberry.photoniz.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

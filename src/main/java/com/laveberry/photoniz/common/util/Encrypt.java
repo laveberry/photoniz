@@ -20,7 +20,7 @@ public class Encrypt {
 
         //3. byte To String (10진수 문자열로 변경)
         StringBuffer sb = new StringBuffer();
-        for(byte b : salt) {
+        for (byte b : salt) {
             sb.append(String.format("%02x", b));
         }
 
@@ -33,17 +33,15 @@ public class Encrypt {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-//            System.out.println("PWD + SALT 적용 전 : " + pwd + salt);
             md.update((pwd + salt).getBytes());
             byte[] pwdSalt = md.digest();
 
             StringBuffer sb = new StringBuffer();
-            for(byte b : pwdSalt) {
+            for (byte b : pwdSalt) {
                 sb.append(String.format("%02x", b));
             }
 
             result = sb.toString();
-//            System.out.println("PWD + SALT 적용 후 : " + result);
 
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);

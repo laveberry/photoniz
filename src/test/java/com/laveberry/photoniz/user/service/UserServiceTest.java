@@ -1,16 +1,12 @@
 package com.laveberry.photoniz.user.service;
 
 import com.laveberry.photoniz.common.BaseSpringBootTest;
-import com.laveberry.photoniz.user.domain.SignUpUserModel;
-import com.laveberry.photoniz.user.enums.Role;
-import com.laveberry.photoniz.user.model.User;
+import com.laveberry.photoniz.user.model.SignUpUserModel;
+import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.repository.UserJpaRepository;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
