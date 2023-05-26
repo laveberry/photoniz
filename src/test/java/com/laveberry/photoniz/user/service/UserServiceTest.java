@@ -8,7 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("유저 서비스")
 public class UserServiceTest extends BaseSpringBootTest {
@@ -45,5 +48,18 @@ public class UserServiceTest extends BaseSpringBootTest {
 
         //then
         assertThat(user.getName()).isEqualTo("test");
+    }
+
+    @Test
+    @DisplayName("Querydsl로 유저 조회")
+    void findUserList() {
+
+        List<User> users = userRepository.findUserByName("test");
+
+        assertAll(
+                () -> assertThat(users.get(0).getName()).isEqualTo("test"),
+                () -> assertThat(users.get(1).getName()).isEqualTo("test")
+        );
+
     }
 }

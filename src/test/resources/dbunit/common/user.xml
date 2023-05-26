@@ -1,3 +1,4 @@
 <dataset>
     <user USER_ID="1" NAME="test" EMAIL="test@test.com" PASSWORD="password" PHONE="01012345678" USER_ROLE="ADMIN" ADDRESS="주소" />
+    <user USER_ID="2" NAME="test" EMAIL="test@naver.com" PASSWORD="password" PHONE="01012345678" USER_ROLE="USER" ADDRESS="강남" />
 </dataset>
