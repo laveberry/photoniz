@@ -69,7 +69,7 @@ tasks.named('test') {
 def querydslDir = "$buildDir/generated/querydsl"
 
 sourceSets {
-	main.java.srcDirs += [ querydslDir ]
+	main.java.srcDir querydslDir
 }
 
 tasks.withType(JavaCompile) {
