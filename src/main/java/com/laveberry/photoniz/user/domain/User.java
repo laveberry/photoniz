@@ -22,6 +22,9 @@ public class User {
 
     private String name;
 
+    @Column(name = "nick_name")
+    private String nickName;
+
     private String email;
 
     private String password;

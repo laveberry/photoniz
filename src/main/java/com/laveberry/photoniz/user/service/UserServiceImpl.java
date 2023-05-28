@@ -3,32 +3,27 @@ package com.laveberry.photoniz.user.service;
 import com.laveberry.photoniz.common.util.Encrypt;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.user.model.CreateUserModel;
-import com.laveberry.photoniz.user.model.SignInModel;
-import com.laveberry.photoniz.user.model.SignInResultModel;
-import com.laveberry.photoniz.user.model.SignUpUserModel;
+import com.laveberry.photoniz.user.model.*;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 @Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
     @Override
-    public String join(String email, String name, String password) {
-        return name;
-    }
-
-    @Override
-    public User findUser(String email) {
-        return userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+    public UserDetailModel findUser(String email) {
+        User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+        return new UserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
     @Override
@@ -66,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public SignInResultModel signIn(SignInModel signInUserModel) {
-        User user = findUser(signInUserModel.email());
+        User user = userRepository.findUser(signInUserModel.email()).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
 
         if (!user.getPassword().equals(Encrypt.getEncrypt(signInUserModel.password(), user.getSalt()))) {
             throw new CustomException(ExceptionType.USER_NOT_FOUND);

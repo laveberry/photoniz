@@ -1,5 +1,7 @@
 package com.laveberry.photoniz.common.util;
 
+import com.laveberry.photoniz.exception.CustomException;
+import com.laveberry.photoniz.exception.ExceptionType;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -44,7 +46,7 @@ public class Encrypt {
             result = sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new CustomException(ExceptionType.PASSWORD_ALGORITHM_FAIL);
         }
 
         return result;
