@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -28,6 +30,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User signUp(SignUpUserModel signUpUserModel) {
+
+        if (userRepository.findUser(signUpUserModel.email()).isPresent()) {
+            throw new CustomException(ExceptionType.USER_ALREADY_EXIST);
+        }
 
         CreateUserModel createUserModel = CreateUserModel.builder()
                 .email(signUpUserModel.email())
@@ -61,6 +67,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public SignInResultModel signIn(SignInModel signInUserModel) {
+
         User user = userRepository.findUser(signInUserModel.email()).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
 
         if (!user.getPassword().equals(Encrypt.getEncrypt(signInUserModel.password(), user.getSalt()))) {
