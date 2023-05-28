@@ -1,6 +1,7 @@
 package com.laveberry.photoniz.work.repository;
 
 import com.laveberry.photoniz.common.BaseSpringBootTest;
+import com.laveberry.photoniz.contract.model.Contract;
 import com.laveberry.photoniz.work.domain.Work;
 import com.laveberry.photoniz.work.enums.WorkType;
 import org.junit.jupiter.api.AfterEach;
@@ -46,6 +47,30 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         System.out.println("createTime =" + resultWork.getCreateDate() + " / getModifiedDate = " + resultWork.getModifiedDate());
 
         assertThat(resultWork.getCreateDate()).isAfter(now);
+
+
+        Work work = workList.get(0);
+
+        System.out.println("work_id = "+work.getWork_id()+" / work_flag = "+work.getWork_type()+" / price ="+work.getPrice());
+        //생성일&수정일 자동등록
+        System.out.println("createTime =" + work.getCreateDate() + " / getModifiedDate = " + work.getModifiedDate() );
+
+
+        //계약 추가
+        Contract contract = Contract.builder()
+                .user_id(1004)
+                .work(work)
+                .work_progress(1)
+                .start_date(work.getCreateDate())
+                .build();
+
+        Work work2 = contract.getWork();
+
+        assertThat(work2).isEqualTo(work);
+        assertThat(contract.getUser_id()).isEqualTo(1004);
+
+        System.out.println("1004 -> " + contract.getUser_id());
+        System.out.println("getWork   ->   " + contract.getWork().getWork_type());
     }
 
     @Test
