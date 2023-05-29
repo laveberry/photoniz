@@ -1,4 +1,6 @@
 package com.laveberry.photoniz.user.model;
 
-public record UserDetailModel(String name, String nickName, String email, String phone, String address) {
+import com.laveberry.photoniz.user.domain.Address;
+
+public record UserDetailModel(String name, String nickName, String email, String phone, Address address) {
 }

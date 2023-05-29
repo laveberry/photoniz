@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetailModel findUser(String email) {
         User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
-        return new UserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
+        return new UserDetailModel(user.getName(), user.getNick_name(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
     @Override

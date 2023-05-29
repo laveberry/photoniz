@@ -23,7 +23,7 @@ public class User {
     private String name;
 
     @Column(name = "nick_name")
-    private String nickName;
+    private String nick_name;
 
     private String email;
 
@@ -36,6 +36,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role user_role;
 
-    private String address;
+    @Embedded
+    private Address address;
 
 }
