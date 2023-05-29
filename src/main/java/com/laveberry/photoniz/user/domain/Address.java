@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.user.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -10,12 +11,15 @@ import lombok.NoArgsConstructor;
 public class Address {
 
     //기본주소
-    private String base_Address;
+    @Column(name = "base_address")
+    private String baseAddress;
+
     //우편번호
-    private String zip_code;
+    @Column(name = "zip_code")
+    private String zipCode;
+
     //상세주소
-    private String detail_address;
-
-
+    @Column(name = "detail_address")
+    private String detailAddress;
 
 }

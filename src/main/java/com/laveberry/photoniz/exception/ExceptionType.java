@@ -1,8 +1,11 @@
 package com.laveberry.photoniz.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-@RequiredArgsConstructor
+@AllArgsConstructor
+@Getter
 public enum ExceptionType {
 
     PASSWORD_ALGORITHM_FAIL(HttpStatus.BAD_REQUEST,"A1000", "패스워드 생성에 실패하였습니다."),
