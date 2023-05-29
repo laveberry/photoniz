@@ -68,11 +68,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public SignInResultModel signIn(SignInModel signInUserModel) {
 
+
         User user = userRepository.findUser(signInUserModel.email()).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
 
         if (!user.getPassword().equals(Encrypt.getEncrypt(signInUserModel.password(), user.getSalt()))) {
             throw new CustomException(ExceptionType.USER_NOT_FOUND);
         }
         return new SignInResultModel(user.getEmail(), true);
+    }
+
+    @Override
+    public UpdateUserResultModel updateUser(String email, UpdateUserModel updateUserModel) {
+
+        User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+
+
+
+        return new UpdateUserResultModel(user.getEmail(), true);
     }
 }
