@@ -16,13 +16,14 @@ import java.util.List;
 public class Work extends BaseTimeEntity { //db매칭
     @Id //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer work_id; //작업아이디
+    @Column(name = "work_id")
+    private Integer id; //작업아이디
 
     @Column(nullable = false)
-    private Integer author_id; //작가아이디
+    private Integer authorId; //작가아이디
 
     @Column(length = 100)
-    private String work_type; //작업유형
+    private String workType; //작업유형
 
     private double price; //가격
 
@@ -34,9 +35,9 @@ public class Work extends BaseTimeEntity { //db매칭
     private List<Contract> contracts = new ArrayList<>();
 
     @Builder
-    public Work(Integer author_id, String work_type, double price, String location) {
-        this.author_id = author_id;
-        this.work_type = work_type;
+    public Work(Integer authorId, String workType, double price, String location) {
+        this.authorId = authorId;
+        this.workType = workType;
         this.price = price;
         this.location = location;
     }

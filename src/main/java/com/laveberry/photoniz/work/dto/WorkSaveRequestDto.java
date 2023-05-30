@@ -15,23 +15,23 @@ import java.util.List;
 @NoArgsConstructor
 public class WorkSaveRequestDto {
 
-    private Integer author_id; //작가아이디
-    private String work_type; //작업유형
+    private Integer authorId; //작가아이디
+    private String workType; //작업유형
     private double price; //가격
     private String location;
 
     @Builder
-    public WorkSaveRequestDto(Integer author_id, String work_type, double price, String location) {
-        this.author_id = author_id;
-        this.work_type = work_type;
+    public WorkSaveRequestDto(Integer authorId, String workType, double price, String location) {
+        this.authorId = authorId;
+        this.workType = workType;
         this.price = price;
         this.location = location;
     }
 
     public Work toEntity(){
         return Work.builder()
-                .author_id(author_id)
-                .work_type(work_type)
+                .authorId(authorId)
+                .workType(workType)
                 .price(price)
                 .location(location)
                 .build();

@@ -31,8 +31,8 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         //LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
 
         workRepository.save(Work.builder()
-                .author_id(123)
-                .work_type(String.valueOf(WorkType.PERSONAL))
+                .authorId(123)
+                .workType(String.valueOf(WorkType.PERSONAL))
                 .price(65000)
                 .build());
 
@@ -40,9 +40,9 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         List<Work> workList = workRepository.findAll();
 
         //then
-        Work resultWork = workList.stream().filter(work -> work.getAuthor_id() == 123).findFirst().get();
+        Work resultWork = workList.stream().filter(work -> work.getAuthorId() == 123).findFirst().get();
 
-        System.out.println("work_id = " + resultWork.getWork_id() + " / work_flag = " + resultWork.getWork_type() + " / price =" + resultWork.getPrice());
+        System.out.println("work_id = " + resultWork.getId() + " / work_flag = " + resultWork.getWorkType() + " / price =" + resultWork.getPrice());
         //생성일&수정일 자동등록
         System.out.println("createTime =" + resultWork.getCreateDate() + " / getModifiedDate = " + resultWork.getModifiedDate());
 
@@ -51,7 +51,7 @@ class WorkRepositoryTest extends BaseSpringBootTest {
 
         Work work = workList.get(0);
 
-        System.out.println("work_id = "+work.getWork_id()+" / work_flag = "+work.getWork_type()+" / price ="+work.getPrice());
+        System.out.println("work_id = "+work.getId()+" / work_flag = "+work.getWorkType()+" / price ="+work.getPrice());
         //생성일&수정일 자동등록
         System.out.println("createTime =" + work.getCreateDate() + " / getModifiedDate = " + work.getModifiedDate() );
 
@@ -70,14 +70,14 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         assertThat(contract.getUser_id()).isEqualTo(1004);
 
         System.out.println("1004 -> " + contract.getUser_id());
-        System.out.println("getWork   ->   " + contract.getWork().getWork_type());
+        System.out.println("getWork   ->   " + contract.getWork().getWorkType());
     }
 
     @Test
     @DisplayName("작업 찾기")
     void findWork() {
         List<Work> works = workRepository.findAll();
-        assertThat(works.get(0).getWork_type()).isEqualTo("PHOTO");
+        assertThat(works.get(0).getWorkType()).isEqualTo("PHOTO");
     }
 
 }
