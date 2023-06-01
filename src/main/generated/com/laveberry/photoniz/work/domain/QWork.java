@@ -22,12 +22,14 @@ public class QWork extends EntityPathBase<Work> {
 
     public final com.laveberry.photoniz.common.QBaseTimeEntity _super = new com.laveberry.photoniz.common.QBaseTimeEntity(this);
 
-    public final NumberPath<Integer> author_id = createNumber("author_id", Integer.class);
+    public final NumberPath<Integer> authorId = createNumber("authorId", Integer.class);
 
     public final ListPath<com.laveberry.photoniz.contract.model.Contract, com.laveberry.photoniz.contract.model.QContract> contracts = this.<com.laveberry.photoniz.contract.model.Contract, com.laveberry.photoniz.contract.model.QContract>createList("contracts", com.laveberry.photoniz.contract.model.Contract.class, com.laveberry.photoniz.contract.model.QContract.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
+
+    public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
     public final StringPath location = createString("location");
 
@@ -36,9 +38,7 @@ public class QWork extends EntityPathBase<Work> {
 
     public final NumberPath<Double> price = createNumber("price", Double.class);
 
-    public final NumberPath<Integer> work_id = createNumber("work_id", Integer.class);
-
-    public final StringPath work_type = createString("work_type");
+    public final StringPath workType = createString("workType");
 
     public QWork(String variable) {
         super(Work.class, forVariable(variable));

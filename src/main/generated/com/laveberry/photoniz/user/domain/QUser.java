@@ -30,15 +30,13 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath name = createString("name");
 
-    public final StringPath nick_name = createString("nick_name");
+    public final StringPath nickName = createString("nickName");
 
     public final StringPath password = createString("password");
 
     public final StringPath phone = createString("phone");
 
-    public final StringPath salt = createString("salt");
-
-    public final EnumPath<com.laveberry.photoniz.user.enums.Role> user_role = createEnum("user_role", com.laveberry.photoniz.user.enums.Role.class);
+    public final EnumPath<com.laveberry.photoniz.user.enums.Role> role = createEnum("role", com.laveberry.photoniz.user.enums.Role.class);
 
     public QUser(String variable) {
         this(User.class, forVariable(variable), INITS);

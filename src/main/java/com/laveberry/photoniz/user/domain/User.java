@@ -23,18 +23,17 @@ public class User {
     private String name;
 
     @Column(name = "nick_name")
-    private String nick_name;
+    private String nickName;
 
     private String email;
 
     private String password;
 
-    private String salt;
-
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    private Role user_role;
+    @Column(name = "user_role")
+    private Role role;
 
     @Embedded
     private Address address;

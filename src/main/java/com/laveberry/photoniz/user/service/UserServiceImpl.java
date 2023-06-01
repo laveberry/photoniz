@@ -1,18 +1,17 @@
 package com.laveberry.photoniz.user.service;
 
-import com.laveberry.photoniz.common.util.Encrypt;
+import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.user.model.*;
-import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.domain.User;
+import com.laveberry.photoniz.user.enums.Role;
+import com.laveberry.photoniz.user.model.*;
 import com.laveberry.photoniz.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,12 +19,15 @@ import java.util.Optional;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
+    private final PasswordEncoder encoder;
+    private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
+//    private final AuthenticationManager authenticationManager;
 
     @Override
     public UserDetailModel findUser(String email) {
         User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
-        return new UserDetailModel(user.getName(), user.getNick_name(), user.getEmail(), user.getPhone(), user.getAddress());
+        return new UserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
     @Override
@@ -48,18 +50,13 @@ public class UserServiceImpl implements UserService {
 
     private User createUser(CreateUserModel createUserModel) {
 
-        // Salt + SHA65 암호화
-        String salt = Encrypt.getSalt();
-        String encryptPass = Encrypt.getEncrypt(createUserModel.password(), salt);
-
         User user = User.builder()
                 .email(createUserModel.email())
                 .name(createUserModel.name())
-                .password(encryptPass)
-                .salt(salt)
+                .password(encoder.encode(createUserModel.password()))
                 .phone(createUserModel.phone())
                 .address(createUserModel.address())
-                .user_role(Role.USER)
+                .role(Role.USER)
                 .build();
 
         return userRepository.save(user);
@@ -68,21 +65,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public SignInResultModel signIn(SignInModel signInUserModel) {
 
-
         User user = userRepository.findUser(signInUserModel.email()).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
 
-        if (!user.getPassword().equals(Encrypt.getEncrypt(signInUserModel.password(), user.getSalt()))) {
-            throw new CustomException(ExceptionType.USER_NOT_FOUND);
+        if (!encoder.matches(signInUserModel.password(), user.getPassword())) {
+            throw new CustomException(ExceptionType.SIGN_IN_FAILED);
         }
-        return new SignInResultModel(user.getEmail(), true);
+
+        String token = jwtTokenProvider.createToken(user.getEmail(), user.getRole().getName());
+
+        return new SignInResultModel(user.getEmail(), true, token);
     }
 
     @Override
     public UpdateUserResultModel updateUser(String email, UpdateUserModel updateUserModel) {
 
         User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
-
-
 
         return new UpdateUserResultModel(user.getEmail(), true);
     }
