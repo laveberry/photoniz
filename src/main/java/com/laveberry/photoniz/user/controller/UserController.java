@@ -29,13 +29,13 @@ public class UserController {
         return BasicResponse.toResponse(HttpStatus.OK, resultModel);
     }
 
-    @GetMapping("/{email}")
-    public BasicResponse userDetail(@PathVariable String email) {
+    @GetMapping
+    public BasicResponse userDetail(@RequestParam String email) {
         return BasicResponse.toResponse(HttpStatus.OK, userService.findUser(email));
     }
 
-    @PutMapping("/{email}")
-    public BasicResponse updateuser(@PathVariable String email, @RequestBody UpdateUserModel updateUserModel) {
+    @PutMapping
+    public BasicResponse updateuser(@RequestParam String email, @RequestBody UpdateUserModel updateUserModel) {
         UpdateUserResultModel updateUserResultModel = userService.updateUser(email, updateUserModel);
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, updateUserResultModel);
     }

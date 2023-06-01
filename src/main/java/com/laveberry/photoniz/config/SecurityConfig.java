@@ -10,7 +10,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Slf4j
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
@@ -32,7 +30,10 @@ public class SecurityConfig {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
-                .authorizeHttpRequests(request -> request.requestMatchers("/v1/user/**").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(request -> request.requestMatchers("/v1/user/signUp", "/v1/user/signIn").permitAll()
+                        .requestMatchers("/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/v1/photographer/**").hasRole("PHOTOGRAPHER")
+                        .anyRequest().authenticated())
                 .logout(Customizer.withDefaults())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();

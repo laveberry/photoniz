@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component

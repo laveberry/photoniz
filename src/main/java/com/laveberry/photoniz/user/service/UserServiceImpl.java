@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
-//    private final AuthenticationManager authenticationManager;
 
     @Override
     public UserDetailModel findUser(String email) {
