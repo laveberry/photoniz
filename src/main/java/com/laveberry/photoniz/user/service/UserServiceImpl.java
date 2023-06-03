@@ -3,6 +3,7 @@ package com.laveberry.photoniz.user.service;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
+import com.laveberry.photoniz.user.domain.Address;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.model.*;

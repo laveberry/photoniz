@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @Configuration
 @Slf4j
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -30,12 +32,12 @@ public class SecurityConfig {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
-                .authorizeHttpRequests(request -> request.requestMatchers("/v1/user/signUp", "/v1/user/signIn").permitAll()
-                        .requestMatchers("/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/v1/photographer/**").hasRole("PHOTOGRAPHER")
-                        .anyRequest().authenticated())
-                .logout(Customizer.withDefaults())
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests(request ->
+                        request.requestMatchers("/v1/user/signUp", "/v1/user/signIn").permitAll() // 이 요청은 허용 (회원가입, 로그인)
+                                .anyRequest().authenticated()) // 모든 권한은 인증되어야 함
+                .logout(Customizer.withDefaults()) // 로그아웃시
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class); // jwt 토큰 인증 필터를 먼저 실행
         return http.build();
     }
 

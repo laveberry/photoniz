@@ -28,7 +28,7 @@ public class UserServiceTest extends BaseSpringBootTest {
     void saveUser() {
 
         SignUpUserModel signUpUserModel =
-                new SignUpUserModel("test@gmail.com", "테스트유저", "1234", "123123123", new Address("인서울", "123", "한강아파트"));
+                new SignUpUserModel("test@gmail.com", "테스트유저", "테스트닉네임", "123123123", "01012345678", new Address("인서울", "한강아파트", ""));
 
         User user = userService.signUp(signUpUserModel);
 
