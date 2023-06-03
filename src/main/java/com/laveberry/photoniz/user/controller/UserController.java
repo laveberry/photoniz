@@ -18,8 +18,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signUp")
-    public BasicResponse signUp(@RequestBody SignUpUserModel signUpUserModel) {
-        User user = userService.signUp(signUpUserModel);
+    public BasicResponse signUp(@RequestBody SignUpModel signUpModel) {
+        User user = userService.signUp(signUpModel);
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, user.getId());
     }
 
@@ -35,8 +35,8 @@ public class UserController {
     }
 
     @PutMapping
-    public BasicResponse updateuser(@RequestParam String email, @RequestBody UpdateUserModel updateUserModel) {
-        UpdateUserResultModel updateUserResultModel = userService.updateUser(email, updateUserModel);
+    public BasicResponse updateUser(@RequestBody UpdateUserModel updateUserModel, @RequestHeader("Authorization") String token) {
+        UpdateUserResultModel updateUserResultModel = userService.updateUser(updateUserModel, token);
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, updateUserResultModel);
     }
 

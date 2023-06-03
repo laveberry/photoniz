@@ -1,4 +1,7 @@
 package com.laveberry.photoniz.user.model;
 
-public record UpdateUserModel(String nickName, String phone, String address) {
+import com.laveberry.photoniz.user.domain.Address;
+import jakarta.validation.constraints.NotNull;
+
+public record UpdateUserModel(@NotNull String nickName, String phone, Address address) {
 }

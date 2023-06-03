@@ -2,10 +2,10 @@ package com.laveberry.photoniz.user.domain;
 
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.util.StringUtils;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "user")
@@ -37,5 +37,23 @@ public class User {
 
     @Embedded
     private Address address;
+
+    public void updateNickName(String nickName) {
+        if(Objects.nonNull(nickName)) {
+            this.nickName = nickName;
+        }
+    }
+
+    public void updatePhone(String phone) {
+        if(Objects.nonNull(phone)) {
+            this.phone = phone;
+        }
+    }
+
+    public void updateAddress(Address address) {
+        if(Objects.nonNull(address)) {
+            this.address = address;
+        }
+    }
 
 }

@@ -9,9 +9,9 @@ public interface UserService {
 
     UserDetailModel findUser(String email);
 
-    User signUp(SignUpUserModel signUpUserModel);
+    User signUp(SignUpModel signUpModel);
 
     SignInResultModel signIn(SignInModel signInUserModel);
 
-    UpdateUserResultModel updateUser(String email, UpdateUserModel updateUserModel);
+    UpdateUserResultModel updateUser(UpdateUserModel updateUserModel, String token);
 }

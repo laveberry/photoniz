@@ -3,7 +3,6 @@ package com.laveberry.photoniz.user.service;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.user.domain.Address;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.model.*;
@@ -31,18 +30,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User signUp(SignUpUserModel signUpUserModel) {
+    public User signUp(SignUpModel signUpModel) {
 
-        if (userRepository.findUser(signUpUserModel.email()).isPresent()) {
+        if (userRepository.findUser(signUpModel.email()).isPresent()) {
             throw new CustomException(ExceptionType.USER_ALREADY_EXIST);
         }
 
         CreateUserModel createUserModel = CreateUserModel.builder()
-                .email(signUpUserModel.email())
-                .name(signUpUserModel.name())
-                .password(signUpUserModel.password())
-                .phone(signUpUserModel.phone())
-                .address(signUpUserModel.address())
+                .email(signUpModel.email())
+                .name(signUpModel.name())
+                .password(signUpModel.password())
+                .phone(signUpModel.phone())
+                .address(signUpModel.address())
                 .build();
 
         return createUser(createUserModel);
@@ -77,9 +76,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UpdateUserResultModel updateUser(String email, UpdateUserModel updateUserModel) {
+    public UpdateUserResultModel updateUser(UpdateUserModel updateUserModel, String token) {
+
+        String email = jwtTokenProvider.getUserSubject(token);
 
         User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+
+        user.updateNickName(updateUserModel.nickName());
+        user.updatePhone(updateUserModel.phone());
+        user.updateAddress(updateUserModel.address());
 
         return new UpdateUserResultModel(user.getEmail(), true);
     }

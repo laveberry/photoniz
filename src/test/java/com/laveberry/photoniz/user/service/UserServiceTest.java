@@ -2,7 +2,7 @@ package com.laveberry.photoniz.user.service;
 
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.user.domain.Address;
-import com.laveberry.photoniz.user.model.SignUpUserModel;
+import com.laveberry.photoniz.user.model.SignUpModel;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.repository.UserJpaRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -27,10 +27,10 @@ public class UserServiceTest extends BaseSpringBootTest {
     @DisplayName("유저 생성")
     void saveUser() {
 
-        SignUpUserModel signUpUserModel =
-                new SignUpUserModel("test@gmail.com", "테스트유저", "테스트닉네임", "123123123", "01012345678", new Address("인서울", "한강아파트", ""));
+        SignUpModel signUpModel =
+                new SignUpModel("test@gmail.com", "테스트유저", "테스트닉네임", "123123123", "01012345678", new Address("인서울", "한강아파트", ""));
 
-        User user = userService.signUp(signUpUserModel);
+        User user = userService.signUp(signUpModel);
 
         String email = userRepository.save(user).getEmail();
 
