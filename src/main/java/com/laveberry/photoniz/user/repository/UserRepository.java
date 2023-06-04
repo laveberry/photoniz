@@ -8,4 +8,6 @@ public interface UserRepository {
     Optional<User> findUser(String email);
 
     User save(User user);
+
+    void deleteUser(User user);
 }

@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
         CreateUserModel createUserModel = CreateUserModel.builder()
                 .email(signUpModel.email())
                 .name(signUpModel.name())
+                .nickName(signUpModel.nickName())
                 .password(signUpModel.password())
                 .phone(signUpModel.phone())
                 .address(signUpModel.address())
@@ -52,6 +53,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .email(createUserModel.email())
                 .name(createUserModel.name())
+                .nickName(createUserModel.nickName())
                 .password(encoder.encode(createUserModel.password()))
                 .phone(createUserModel.phone())
                 .address(createUserModel.address())
@@ -83,9 +85,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
 
         user.updateNickName(updateUserModel.nickName());
+        user.updatePassword(encoder.encode(updateUserModel.password()));
         user.updatePhone(updateUserModel.phone());
         user.updateAddress(updateUserModel.address());
 
         return new UpdateUserResultModel(user.getEmail(), true);
     }
+
 }

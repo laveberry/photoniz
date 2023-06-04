@@ -1,5 +1,7 @@
 package com.laveberry.photoniz.user.repository;
 
+import com.laveberry.photoniz.exception.CustomException;
+import com.laveberry.photoniz.exception.ExceptionType;
 import com.laveberry.photoniz.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User save(User user) {
         return userJpaRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userJpaRepository.delete(user);
     }
 }

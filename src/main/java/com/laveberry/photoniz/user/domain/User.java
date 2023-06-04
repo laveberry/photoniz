@@ -2,8 +2,10 @@ package com.laveberry.photoniz.user.domain;
 
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.util.StringUtils;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
@@ -39,21 +41,30 @@ public class User {
     private Address address;
 
     public void updateNickName(String nickName) {
-        if(Objects.nonNull(nickName)) {
+        if (Objects.nonNull(nickName)) {
             this.nickName = nickName;
         }
     }
 
     public void updatePhone(String phone) {
-        if(Objects.nonNull(phone)) {
+        if (Objects.nonNull(phone)) {
             this.phone = phone;
         }
     }
 
     public void updateAddress(Address address) {
-        if(Objects.nonNull(address)) {
+        if (Objects.nonNull(address)) {
             this.address = address;
         }
     }
 
+    public void updatePassword(String password) {
+        if (Objects.nonNull(password)) {
+            this.password = password;
+        }
+    }
+
+    public boolean checkRole(Role role) {
+        return this.role == role;
+    }
 }
