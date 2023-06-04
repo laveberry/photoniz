@@ -14,12 +14,6 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    @GetMapping("/test")
-    @AdminAuthorize
-    public String test() {
-        return "admin_test";
-    }
-
     @DeleteMapping("/user")
     @AdminAuthorize
     public BasicResponse deleteUser(@RequestParam String email) {
