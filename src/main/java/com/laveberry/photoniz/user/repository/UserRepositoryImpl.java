@@ -28,4 +28,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void deleteUser(User user) {
         userJpaRepository.delete(user);
     }
+
+    @Override
+    public Optional<User> findUserById(Integer userId) {
+        return userJpaRepository.findById(userId);
+    }
 }

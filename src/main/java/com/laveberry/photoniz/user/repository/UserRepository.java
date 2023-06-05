@@ -10,4 +10,6 @@ public interface UserRepository {
     User save(User user);
 
     void deleteUser(User user);
+
+    Optional<User> findUserById(Integer userId);
 }
