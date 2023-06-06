@@ -13,7 +13,7 @@ import java.util.Objects;
 public enum BoardType {
     NOTICE("NOTICE"),
     NORMAL("NORMAL"),
-    QNA("Q&A");
+    QNA("QNA");
     private final String type;
 
     public static BoardType getType(String type) {

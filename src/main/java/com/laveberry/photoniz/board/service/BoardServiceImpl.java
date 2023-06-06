@@ -44,9 +44,8 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Page<BoardListModel> findBoardList(String type, Pageable pageable) {
 
-        BoardType boardType = BoardType.getType(type);
-
-        return boardRepository.findBoardList(boardType, pageable).map(board ->
+        //TODO 페이지 관련 추가 처리 필요
+        return boardRepository.findBoardList(BoardType.getType(type), pageable).map(board ->
                 new BoardListModel(board.getId(), board.getUser().getNickName(), board.getTitle(),
                         board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType()));
     }
