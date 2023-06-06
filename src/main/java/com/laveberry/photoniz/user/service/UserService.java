@@ -1,11 +1,16 @@
 package com.laveberry.photoniz.user.service;
 
 
-import com.laveberry.photoniz.user.model.User;
+import com.laveberry.photoniz.user.domain.User;
+import com.laveberry.photoniz.user.model.*;
 
 public interface UserService {
 
-    String join(String email, String name, String password);
+    UserDetailModel findUser(String email);
 
-    User findUser(String email);
+    User signUp(SignUpModel signUpModel);
+
+    SignInResultModel signIn(SignInModel signInUserModel);
+
+    UpdateUserResultModel updateUser(UpdateUserModel updateUserModel, String token);
 }

@@ -1,3 +1,4 @@
 <dataset>
-    <user USER_ID="1" NAME="test" EMAIL="test@test.com" PASSWORD="password" PHONE="01012345678" USER_ROLE="ADMIN" ADDRESS="주소" />
+    <user USER_ID="1" NAME="test" NICK_NAME="test_nick" EMAIL="test@test.com" PASSWORD="password" PHONE="01012345678" USER_ROLE="ADMIN" BASE_ADDRESS="서울" ZIP_CODE="123456" DETAIL_ADDRESS="강남구"/>
+    <user USER_ID="2" NAME="test" NICK_NAME="test_nick2" EMAIL="test@naver.com" PASSWORD="password" PHONE="01012345678" USER_ROLE="USER" BASE_ADDRESS="용인" ZIP_CODE="123456" DETAIL_ADDRESS="처인구"/>
 </dataset>

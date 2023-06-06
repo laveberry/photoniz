@@ -27,3 +27,6 @@ decorator:
     p6spy:
       enable-logging: true
       logging: sysout
+
+jwt:
+  key: photonizjwtkeyismorethan80bitsandalgorithmishs256butiwantmorejwtkeylengthsoicando

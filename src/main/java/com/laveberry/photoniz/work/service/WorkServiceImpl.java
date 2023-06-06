@@ -16,7 +16,7 @@ public class WorkServiceImpl implements WorkService {
 
     @Transactional
     public Integer save(WorkSaveRequestDto requestDto) {
-        return workRepository.save(requestDto.toEntity()).getWork_id();
+        return workRepository.save(requestDto.toEntity()).getId();
     }
 
 }
