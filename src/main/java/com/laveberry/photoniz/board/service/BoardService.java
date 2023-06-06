@@ -1,6 +1,5 @@
 package com.laveberry.photoniz.board.service;
 
-import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.model.BoardDetailModel;
 import com.laveberry.photoniz.board.model.BoardListModel;
 import org.springframework.data.domain.Page;

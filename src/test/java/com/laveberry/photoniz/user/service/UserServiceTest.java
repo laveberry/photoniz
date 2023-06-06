@@ -61,6 +61,5 @@ public class UserServiceTest extends BaseSpringBootTest {
                 () -> assertThat(users.get(0).getName()).isEqualTo("test"),
                 () -> assertThat(users.get(1).getName()).isEqualTo("test")
         );
-
     }
 }

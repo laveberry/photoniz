@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
-
+@DisplayName("게시판 서비스")
 public class BoardServiceTest extends BaseSpringBootTest {
 
     @Autowired
