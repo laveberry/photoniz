@@ -35,4 +35,7 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "delete_yn", columnDefinition = "tinyint(1)")
+    private Boolean deleteYn;
+
 }

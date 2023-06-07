@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardJpaRepository extends JpaRepository<Board, Integer> {
-    Page<Board> findByTypeOrderById(BoardType type, Pageable pageable);
+    Page<Board> findByTypeAndDeleteYnIsFalseOrderById(BoardType type, Pageable pageable);
 }
