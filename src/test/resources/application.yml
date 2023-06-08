@@ -30,3 +30,6 @@ decorator:
 
 jwt:
   key: photonizjwtkeyismorethan80bitsandalgorithmishs256butiwantmorejwtkeylengthsoicando
+
+upload:
+  path: ${user.home}${file.separator}images
