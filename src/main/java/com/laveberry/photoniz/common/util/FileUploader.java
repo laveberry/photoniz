@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Component
@@ -19,14 +20,14 @@ public class FileUploader {
     @Value("${upload.path}")
     private String basicPath;
 
-    private final String DELIMITER = File.separator;
+    private final static String DELIMITER = File.separator;
 
     public void upload(String fileName, MultipartFile multipartFile) {
-        final String fileFullPath = basicPath + DELIMITER + fileName;
+        final String fileFullName = basicPath + DELIMITER + fileName;
 
         try {
-            Files.createDirectories(Paths.get(basicPath)); //FIXME 파일경로 수정
-            multipartFile.transferTo(new File(fileName));
+            Files.createDirectories(Paths.get(basicPath));
+            multipartFile.transferTo(new File(fileFullName));
         } catch (IOException e) {
             log.error("파일 업로드 실패 : ", e);
             throw new CustomException(ExceptionType.SIGN_IN_FAILED);
