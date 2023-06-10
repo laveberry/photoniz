@@ -17,6 +17,7 @@ public enum ExceptionType {
     ADMIN_DO_NOT_DELETE(HttpStatus.BAD_REQUEST, "U1004", "관리자는 삭제할 수 없습니다."),
     BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "B1000", "게시물이 존재하지 않습니다."),
     INCORRECT_BOARD_TYPE(HttpStatus.BAD_REQUEST, "B1001", "게시판 타입이 적절하지 않습니다."),
+    NOT_BOARD_USER(HttpStatus.BAD_REQUEST, "B1002", "게시물 수정/삭제 권한이 없습니다."),
     FILE_UPLOAD_FAIL(HttpStatus.BAD_REQUEST, "F1000", "파일 업로드에 실패했습니다.");
 
     private final HttpStatus status;

@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @Builder
@@ -38,4 +40,15 @@ public class Board extends BaseTimeEntity {
     @Column(name = "delete_yn", columnDefinition = "tinyint(1)")
     private Boolean deleteYn;
 
+    public void updateTitle(String title) {
+        if (Objects.nonNull(title)) {
+            this.title = title;
+        }
+    }
+
+    public void updateContent(String content) {
+        if (Objects.nonNull(content)) {
+            this.content = content;
+        }
+    }
 }

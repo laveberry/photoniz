@@ -13,4 +13,6 @@ public interface BoardRepository {
     Page<Board> findBoardList(BoardType type, Pageable pageable);
 
     Board save(Board board);
+
+    void deleteBoard(Integer boardId);
 }

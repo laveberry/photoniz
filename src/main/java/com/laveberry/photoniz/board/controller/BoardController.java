@@ -24,7 +24,6 @@ public class BoardController {
     public BasicResponse boardList(@RequestParam String type, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
         Page<BoardListModel> boardList = boardService.findBoardList(type, pageable);
-
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 
@@ -38,13 +37,15 @@ public class BoardController {
         return BasicResponse.toResponse(HttpStatus.CREATED, boardService.createBoard(createBoardModel, token).getId());
     }
 
-    @PutMapping("/{boardId}")
-    public BasicResponse updateBoard(@RequestHeader("Authorization") String token, @PathVariable Integer boardId, @RequestBody UpdateBoardModel updateBoardModel) {
-        return BasicResponse.toResponse(HttpStatus.CREATED, "");
+    @PutMapping
+    public BasicResponse updateBoard(@RequestHeader("Authorization") String token, @RequestBody UpdateBoardModel updateBoardModel) {
+        Integer boardId = boardService.updateBoard(updateBoardModel, token);
+        return BasicResponse.toResponse(HttpStatus.CREATED, boardId);
     }
 
     @DeleteMapping("{boardId}")
-    public BasicResponse deleteBoard(@PathVariable Integer boardId) {
+    public BasicResponse deleteBoard(@RequestHeader("Authorization") String token, @PathVariable Integer boardId) {
+        boardService.deleteBoard(boardId, token);
         return BasicResponse.toResponse(HttpStatus.OK, boardId);
     }
 }

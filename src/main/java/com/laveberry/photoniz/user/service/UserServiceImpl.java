@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetailModel findUser(String email) {
-        User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+        User user = getUser(email);
         return new UserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public SignInResultModel signIn(SignInModel signInUserModel) {
 
-        User user = userRepository.findUser(signInUserModel.email()).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+        User user = getUser(signInUserModel.email());
 
         if (!encoder.matches(signInUserModel.password(), user.getPassword())) {
             throw new CustomException(ExceptionType.SIGN_IN_FAILED);
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
         String email = jwtTokenProvider.getUserSubject(token);
 
-        User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+        User user = getUser(email);
 
         user.updateNickName(updateUserModel.nickName());
         user.updatePassword(encoder.encode(updateUserModel.password()));
@@ -90,6 +90,10 @@ public class UserServiceImpl implements UserService {
         user.updateAddress(updateUserModel.address());
 
         return new UpdateUserResultModel(user.getEmail(), true);
+    }
+
+    private User getUser(String email) {
+        return userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
     }
 
 }
