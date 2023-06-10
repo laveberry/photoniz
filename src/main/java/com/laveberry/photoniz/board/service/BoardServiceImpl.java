@@ -5,10 +5,14 @@ import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.board.model.BoardDetailModel;
 import com.laveberry.photoniz.board.model.BoardListModel;
 import com.laveberry.photoniz.board.model.BoardUserModel;
+import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.repository.BoardRepository;
+import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
 import com.laveberry.photoniz.user.domain.User;
+import com.laveberry.photoniz.user.repository.UserRepository;
+import com.laveberry.photoniz.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -23,6 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public BoardDetailModel findBoardDetail(Integer boardId) {
@@ -48,5 +55,24 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findBoardList(BoardType.getType(type), pageable).map(board ->
                 new BoardListModel(board.getId(), board.getUser().getNickName(), board.getTitle(),
                         board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType()));
+    }
+
+    @Override
+    public Board createBoard(CreateBoardModel createBoardModel, String token) {
+
+        String email = jwtTokenProvider.getUserSubject(token);
+
+        User user = userRepository.findUser(email).orElseThrow(() -> new CustomException(ExceptionType.USER_NOT_FOUND));
+
+        Board board = Board.builder()
+                .title(createBoardModel.title())
+                .content(createBoardModel.content())
+                .type(BoardType.getType(createBoardModel.type()))
+                .readCount(0)
+                .deleteYn(false)
+                .user(user)
+                .build();
+
+        return boardRepository.save(board);
     }
 }

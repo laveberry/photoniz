@@ -34,12 +34,12 @@ public class BoardController {
     }
 
     @PostMapping
-    public BasicResponse createBoard(@RequestBody CreateBoardModel createBoardModel) {
-        return BasicResponse.toResponse(HttpStatus.CREATED, "");
+    public BasicResponse createBoard(@RequestHeader("Authorization") String token, @RequestBody CreateBoardModel createBoardModel) {
+        return BasicResponse.toResponse(HttpStatus.CREATED, boardService.createBoard(createBoardModel, token).getId());
     }
 
     @PutMapping("/{boardId}")
-    public BasicResponse updateBoard(@PathVariable Integer boardId, @RequestBody UpdateBoardModel updateBoardModel) {
+    public BasicResponse updateBoard(@RequestHeader("Authorization") String token, @PathVariable Integer boardId, @RequestBody UpdateBoardModel updateBoardModel) {
         return BasicResponse.toResponse(HttpStatus.CREATED, "");
     }
 

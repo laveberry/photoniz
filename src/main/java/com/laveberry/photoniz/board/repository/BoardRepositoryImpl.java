@@ -24,4 +24,9 @@ public class BoardRepositoryImpl implements BoardRepository {
     public Page<Board> findBoardList(BoardType type, Pageable pageable) {
         return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, pageable);
     }
+
+    @Override
+    public Board save(Board board) {
+        return boardJpaRepository.save(board);
+    }
 }

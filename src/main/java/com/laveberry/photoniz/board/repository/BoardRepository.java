@@ -11,4 +11,6 @@ public interface BoardRepository {
     Optional<Board> findBoardDetail(Integer boardId);
 
     Page<Board> findBoardList(BoardType type, Pageable pageable);
+
+    Board save(Board board);
 }
