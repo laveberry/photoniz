@@ -2,6 +2,7 @@ package com.laveberry.photoniz.config.jwt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.laveberry.photoniz.exception.ExceptionType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,10 +27,13 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         Map<String, Object> errorDetails = new HashMap<>();
-        errorDetails.put("statusCode", 401);
-        errorDetails.put("status", "NOT_AUTHORIZED");
-        errorDetails.put("errorCode", "A1001");
-        errorDetails.put("message", "인증에 실패했습니다.");
+
+        ExceptionType type = ExceptionType.NOT_AUTHORIZED_TOKEN;
+
+        errorDetails.put("statusCode", type.getStatus().value());
+        errorDetails.put("status", type.getStatus().name());
+        errorDetails.put("errorCode", type.getErrorCode());
+        errorDetails.put("message", type.getMessage());
 
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

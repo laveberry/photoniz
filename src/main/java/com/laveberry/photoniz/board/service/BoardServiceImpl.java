@@ -12,7 +12,6 @@ import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.repository.UserRepository;
-import com.laveberry.photoniz.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
