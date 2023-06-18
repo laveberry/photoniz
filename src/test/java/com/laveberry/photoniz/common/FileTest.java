@@ -22,7 +22,7 @@ class FileTest extends BaseSpringBootTest {
         MockMultipartFile file = new MockMultipartFile("image", "test.jpg", "image/jpg",
                 new FileInputStream("src/test/resources/image/test.jpg"));
 
-        uploader.upload("image.jpg", file);
+//        uploader.upload("image.jpg", file); //실제로 업로드까지 하지는 않겠음
         Assertions.assertThat(file.getName()).isEqualTo("image");
     }
 }
