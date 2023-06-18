@@ -34,12 +34,12 @@ public class PhotoBoardServiceImpl implements PhotoBoardService {
         PhotoBoard board = photoBoardRepository.findBoardDetail(boardId).orElseThrow(
                 () -> new CustomException(ExceptionType.BOARD_NOT_FOUND));
 
-        BoardUserModel boardUserModel = new BoardUserModel(
+        PhotoBoardUserModel photoBoardUserModel = new PhotoBoardUserModel(
                 board.getUser().getNickName(),
                 board.getUser().getEmail()
         );
 
-        return new PhotoBoardDetailModel(board.getId(), boardUserModel, board.getTitle(), board.getContent(),
+        return new PhotoBoardDetailModel(board.getId(), photoBoardUserModel, board.getTitle(), board.getContent(),
                 board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getWorkType(), board.getType());
     }
 

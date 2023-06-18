@@ -23,6 +23,10 @@ public class PhotoBoard extends BaseTimeEntity {
     @Column(name = "board_id")
     private Integer id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     private String title;
 
     private String content;
@@ -32,17 +36,13 @@ public class PhotoBoard extends BaseTimeEntity {
 
     //이거 수정
     @Enumerated(EnumType.STRING)
-    @Column(name = "main_type")
+    @Column(name = "main_type") //모델, 사진, 폅집, 그림
     private MainType type;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //개인촬영, 바디프로필, 웨딩
     private WorkType workType;
 
     private Integer mainPhotoId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Column(name = "delete_yn", columnDefinition = "tinyint(1)")
     private Boolean deleteYn;

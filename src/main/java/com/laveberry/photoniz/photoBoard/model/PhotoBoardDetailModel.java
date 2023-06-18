@@ -5,6 +5,6 @@ import com.laveberry.photoniz.work.enums.WorkType;
 
 import java.time.LocalDateTime;
 
-public record PhotoBoardDetailModel(Integer boardId, BoardUserModel user, String title, String content, Integer readCount,
+public record PhotoBoardDetailModel(Integer boardId, PhotoBoardUserModel user, String title, String content, Integer readCount,
                                     LocalDateTime createdAt, LocalDateTime updatedAt, WorkType workType, MainType mainType) {
 }

@@ -16,9 +16,9 @@ import static com.laveberry.photoniz.common.BaseSpringBootTest.*;
 
 @Disabled
 @DbUnitConfiguration(databaseConnection = "dbUnitDatabaseConnection")
-@DatabaseSetup(value = {WORK, USER, BOARD
+@DatabaseSetup(value = {WORK, USER, BOARD, PHOTOBOARD
 }, type = DatabaseOperation.CLEAN_INSERT)
-@DatabaseTearDown(value = {WORK, USER, BOARD
+@DatabaseTearDown(value = {WORK, USER, BOARD, PHOTOBOARD
 }, type = DatabaseOperation.DELETE_ALL)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -33,5 +33,6 @@ public class BaseSpringBootTest {
     public static final String WORK = PATH + "/work.xml";
     public static final String USER = PATH + "/user.xml";
     public static final String BOARD = PATH + "/board.xml";
+    public static final String PHOTOBOARD = PATH + "/photoBoard.xml";
 
 }
