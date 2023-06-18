@@ -12,7 +12,7 @@ public interface PhotoBoardService {
 
     PhotoBoardDetailModel findBoardDetail(Integer boardId);
 
-    Page<PhotoBoardListModel> findBoardList(String type, Pageable pageable);
+    Page<PhotoBoardListModel> findPhotoBoardList(String type, Pageable pageable);
 
     PhotoBoard createBoard(CreatePhotoBoardModel createBoardModel, String token);
 

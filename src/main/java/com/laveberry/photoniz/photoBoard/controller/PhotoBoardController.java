@@ -23,7 +23,7 @@ public class PhotoBoardController {
     @GetMapping("/list")
     public BasicResponse photoBoardList(@RequestParam String type, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        Page<PhotoBoardListModel> boardList = photoBoardService.findBoardList(type, pageable);
+        Page<PhotoBoardListModel> boardList = photoBoardService.findPhotoBoardList(type, pageable);
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 

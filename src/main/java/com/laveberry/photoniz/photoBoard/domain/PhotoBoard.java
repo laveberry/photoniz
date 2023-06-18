@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
-@Entity
+@Entity(name = "PHOTO_BOARD")
 @Getter
 @Builder
 @AllArgsConstructor

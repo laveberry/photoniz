@@ -44,7 +44,7 @@ public class PhotoBoardServiceImpl implements PhotoBoardService {
     }
 
     @Override
-    public Page<PhotoBoardListModel> findBoardList(String type, Pageable pageable) {
+    public Page<PhotoBoardListModel> findPhotoBoardList(String type, Pageable pageable) {
 
         //TODO 페이지 관련 추가 처리 필요
         return photoBoardRepository.findBoardList(MainType.getMainType(type), pageable).map(board ->

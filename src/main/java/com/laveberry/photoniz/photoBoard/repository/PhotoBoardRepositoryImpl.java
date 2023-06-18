@@ -13,22 +13,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PhotoBoardRepositoryImpl implements PhotoBoardRepository {
 
-    private final PhotoBoardJpaRepository boardJpaRepository;
+    private final PhotoBoardJpaRepository photoBoardJpaRepository;
     private final QPhotoBoardRepository qPhotoBoardRepository;
 
     @Override
     public Optional<PhotoBoard> findBoardDetail(Integer boardId) {
-        return boardJpaRepository.findByIdAndDeleteYnIsFalse(boardId);
+        return photoBoardJpaRepository.findByIdAndDeleteYnIsFalse(boardId);
     }
 
     @Override
     public Page<PhotoBoard> findBoardList(MainType type, Pageable pageable) {
-        return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, pageable);
+        return photoBoardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, pageable);
     }
 
     @Override
     public PhotoBoard save(PhotoBoard board) {
-        return boardJpaRepository.save(board);
+        return photoBoardJpaRepository.save(board);
     }
 
     @Override
