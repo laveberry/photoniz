@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("컨트롤러 테스트 샘플")
-public class ControllerTest extends BaseSpringBootTest {
+class ControllerTest extends BaseSpringBootTest {
 
 
     @Test

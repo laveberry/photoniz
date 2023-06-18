@@ -57,7 +57,7 @@ class PhotoBoardServiceTest extends BaseSpringBootTest {
                 .build();
 
         PhotoBoard response = photoBoardRepository.save(photoBoard);
-        System.out.println("response.getType()  => " + response.getType());
+        System.out.println("response.getType()  => " + response.getType()); // FIXME 테스트는 print문 보단 assertThat 등으로 검증하는것이 좋음
     }
 
 }

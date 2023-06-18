@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("서비스 테스트 샘플")
-public class ServiceTest extends BaseSpringBootTest {
+class ServiceTest extends BaseSpringBootTest {
 
     @Autowired
     private UserService userService;

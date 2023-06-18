@@ -19,7 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("게시판 서비스")
-public class BoardServiceTest extends BaseSpringBootTest {
+class BoardServiceTest extends BaseSpringBootTest {
 
     @Autowired
     private BoardService boardService;
@@ -53,7 +53,8 @@ public class BoardServiceTest extends BaseSpringBootTest {
                 .type(BoardType.getType(createBoardModel.type()))
                 .build();
 
-        boardRepository.save(board);
+        Integer id = boardRepository.save(board).getId();
+        assertThat(id).isEqualTo(16);
     }
 
 }
