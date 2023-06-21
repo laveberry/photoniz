@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/photo_board")
+@RequestMapping("/v1/photoBoard")
 public class PhotoBoardController {
 
     private final PhotoBoardService photoBoardService;
