@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.common;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
@@ -25,6 +26,9 @@ import static com.laveberry.photoniz.common.BaseSpringBootTest.*;
 @AutoConfigureRestDocs
 @AutoConfigureMockMvc
 public class BaseSpringBootTest {
+
+    @Autowired
+    protected ObjectMapper objectMapper;
 
     @Autowired
     protected MockMvc mockMvc;

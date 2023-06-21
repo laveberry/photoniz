@@ -29,7 +29,7 @@ decorator:
       logging: sysout
 
 jwt:
-  key: photonizjwtkeyismorethan80bitsandalgorithmishs256butiwantmorejwtkeylengthsoicando
+  key: 4769d040867ca986ab522e1a33706d4b8d5c5d707065ce70f47b69803c2d1a2264af0cc39e9b364fed3e3f3884a6ff438ac8bb607225ece0f93e8b991f642355
 
 upload:
   path: ${user.home}${file.separator}images
