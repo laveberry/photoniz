@@ -5,10 +5,7 @@ import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.work.enums.WorkType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -16,7 +13,7 @@ import java.util.Objects;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PhotoBoard extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

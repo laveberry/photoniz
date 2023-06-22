@@ -4,10 +4,7 @@ import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.user.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -15,7 +12,7 @@ import java.util.Objects;
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseTimeEntity {
 
     @Id

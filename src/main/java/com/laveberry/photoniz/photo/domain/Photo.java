@@ -5,15 +5,12 @@ import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.work.domain.Work;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Photo extends BaseTimeEntity {
 
