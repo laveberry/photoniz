@@ -6,7 +6,6 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -68,9 +67,6 @@ public class User implements UserDetails {
     public boolean checkRole(Role role) {
         return this.role == role;
     }
-
-
-    // FIXME Security 설정 시작 부분
 
     // 권한 반환
     @Override
