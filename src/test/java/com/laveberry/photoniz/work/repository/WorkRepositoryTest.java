@@ -26,7 +26,7 @@ class WorkRepositoryTest extends BaseSpringBootTest {
     }
 
     @Test
-    public void WorkEntity_등록() {
+    void WorkEntity_등록() {
         LocalDateTime now = LocalDateTime.now();
         //LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
 
@@ -51,6 +51,7 @@ class WorkRepositoryTest extends BaseSpringBootTest {
 
         Work work = workList.get(0);
 
+        // FIXME 테스트는 print문 보단 assertThat 등으로 검증하는것이 좋음
         System.out.println("work_id = "+work.getId()+" / work_flag = "+work.getWorkType()+" / price ="+work.getPrice());
         //생성일&수정일 자동등록
         System.out.println("createTime =" + work.getCreateDate() + " / getModifiedDate = " + work.getModifiedDate() );
@@ -69,6 +70,7 @@ class WorkRepositoryTest extends BaseSpringBootTest {
         assertThat(work2).isEqualTo(work);
         assertThat(contract.getUser_id()).isEqualTo(1004);
 
+        // FIXME 테스트는 print문 보단 assertThat 등으로 검증하는것이 좋음
         System.out.println("1004 -> " + contract.getUser_id());
         System.out.println("getWork   ->   " + contract.getWork().getWorkType());
     }

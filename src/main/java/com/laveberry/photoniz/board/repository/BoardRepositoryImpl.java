@@ -14,14 +14,25 @@ import java.util.Optional;
 public class BoardRepositoryImpl implements BoardRepository {
 
     private final BoardJpaRepository boardJpaRepository;
+    private final QBoardRepository qBoardRepository;
 
     @Override
     public Optional<Board> findBoardDetail(Integer boardId) {
-        return boardJpaRepository.findById(boardId);
+        return boardJpaRepository.findByIdAndDeleteYnIsFalse(boardId);
     }
 
     @Override
     public Page<Board> findBoardList(BoardType type, Pageable pageable) {
-        return boardJpaRepository.findByTypeOrderById(type, pageable);
+        return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, pageable);
+    }
+
+    @Override
+    public Board save(Board board) {
+        return boardJpaRepository.save(board);
+    }
+
+    @Override
+    public void deleteBoard(Integer boardId) {
+        qBoardRepository.softDelete(boardId);
     }
 }

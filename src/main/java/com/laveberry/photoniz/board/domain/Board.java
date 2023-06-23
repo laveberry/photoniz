@@ -4,16 +4,15 @@ import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.user.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseTimeEntity {
 
     @Id
@@ -35,4 +34,18 @@ public class Board extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "delete_yn", columnDefinition = "tinyint(1)")
+    private Boolean deleteYn;
+
+    public void updateTitle(String title) {
+        if (Objects.nonNull(title)) {
+            this.title = title;
+        }
+    }
+
+    public void updateContent(String content) {
+        if (Objects.nonNull(content)) {
+            this.content = content;
+        }
+    }
 }

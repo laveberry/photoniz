@@ -7,6 +7,7 @@ import com.laveberry.photoniz.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -18,13 +19,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signUp")
-    public BasicResponse signUp(@RequestBody SignUpModel signUpModel) {
+    public BasicResponse signUp(@RequestBody @Validated SignUpModel signUpModel) {
         User user = userService.signUp(signUpModel);
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, user.getId());
     }
 
     @PostMapping("/signIn")
-    public BasicResponse signIn(@RequestBody SignInModel signInUserModel) {
+    public BasicResponse signIn(@RequestBody @Validated SignInModel signInUserModel) {
         SignInResultModel resultModel = userService.signIn(signInUserModel);
         return BasicResponse.toResponse(HttpStatus.OK, resultModel);
     }
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PutMapping
-    public BasicResponse updateUser(@RequestBody UpdateUserModel updateUserModel, @RequestHeader("Authorization") String token) {
+    public BasicResponse updateUser(@RequestBody @Validated UpdateUserModel updateUserModel, @RequestHeader("Authorization") String token) {
         UpdateUserResultModel updateUserResultModel = userService.updateUser(updateUserModel, token);
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, updateUserResultModel);
     }

@@ -1,6 +1,5 @@
 package com.laveberry.photoniz.board.model;
 
-import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.enums.BoardType;
 
 import java.time.LocalDateTime;

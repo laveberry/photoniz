@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("유저 서비스")
-public class UserServiceTest extends BaseSpringBootTest {
+class UserServiceTest extends BaseSpringBootTest {
 
     @Autowired
     private UserService userService;

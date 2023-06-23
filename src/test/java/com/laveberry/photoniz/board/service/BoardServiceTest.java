@@ -1,6 +1,9 @@
 package com.laveberry.photoniz.board.service;
 
+import com.laveberry.photoniz.board.domain.Board;
+import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.board.model.BoardListModel;
+import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.repository.BoardRepository;
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("게시판 서비스")
-public class BoardServiceTest extends BaseSpringBootTest {
+class BoardServiceTest extends BaseSpringBootTest {
 
     @Autowired
     private BoardService boardService;
@@ -26,7 +29,7 @@ public class BoardServiceTest extends BaseSpringBootTest {
 
     @Test
     @DisplayName("게시물 리스트 조회")
-    void BoardList() {
+    void boardList() {
         //given
         Sort sort = Sort.by(Sort.Direction.ASC, "id"); //오름차순 정렬
         Pageable pageable = PageRequest.of(0, 10, sort);
@@ -37,6 +40,21 @@ public class BoardServiceTest extends BaseSpringBootTest {
         //then
         assertThat(boardList.getSize()).isEqualTo(10);
         assertThat(boardList.get().findFirst().get().boardId()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("게시물 생성")
+    void createBoard() {
+        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA");
+
+        Board board = Board.builder()
+                .title(createBoardModel.title())
+                .content(createBoardModel.content())
+                .type(BoardType.getType(createBoardModel.type()))
+                .build();
+
+        Integer id = boardRepository.save(board).getId();
+        assertThat(id).isEqualTo(16);
     }
 
 }

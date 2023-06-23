@@ -1,4 +1,6 @@
 package com.laveberry.photoniz.board.model;
 
-public record UpdateBoardModel() {
+import jakarta.validation.constraints.NotNull;
+
+public record UpdateBoardModel(@NotNull Integer boardId, String title, String content) {
 }
