@@ -6,7 +6,7 @@ import com.laveberry.photoniz.user.model.*;
 
 public interface UserService {
 
-    UserDetailModel findUser(String email);
+    ResponseUserDetailModel findUser(String email);
 
     User signUp(SignUpModel signUpModel);
 

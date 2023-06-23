@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetailModel findUser(String email) {
+    public ResponseUserDetailModel findUser(String email) {
         User user = getUser(email);
-        return new UserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
+        return new ResponseUserDetailModel(user.getName(), user.getNickName(), user.getEmail(), user.getPhone(), user.getAddress());
     }
 
     @Override

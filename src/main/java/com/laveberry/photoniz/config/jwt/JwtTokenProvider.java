@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.config.jwt;
 
+import com.laveberry.photoniz.user.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

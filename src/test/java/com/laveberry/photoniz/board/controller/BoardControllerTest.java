@@ -1,24 +1,16 @@
 package com.laveberry.photoniz.board.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.laveberry.photoniz.board.enums.BoardType;
-import com.laveberry.photoniz.board.model.BoardListModel;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.user.enums.Role;
-import com.laveberry.photoniz.user.repository.UserRepository;
-import com.laveberry.photoniz.user.service.UserDetailsServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

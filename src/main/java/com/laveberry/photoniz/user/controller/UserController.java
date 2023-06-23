@@ -4,6 +4,8 @@ import com.laveberry.photoniz.common.model.BasicResponse;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.model.*;
 import com.laveberry.photoniz.user.service.UserService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

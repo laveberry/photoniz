@@ -3,7 +3,11 @@ package com.laveberry.photoniz.user.domain;
 import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +16,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +67,44 @@ public class User {
 
     public boolean checkRole(Role role) {
         return this.role == role;
+    }
+
+
+    // FIXME Security 설정 시작 부분
+
+    // 권한 반환
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    // 사용자 id를 반환
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    // 계정 만료 여부 반환
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    //계정 잠금 여부 반환
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    // 패스워드 만료 여부 반환
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    // 계정 사용 가능 여부 반환
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
