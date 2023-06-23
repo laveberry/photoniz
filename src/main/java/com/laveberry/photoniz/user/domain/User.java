@@ -6,6 +6,10 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+>>>>>>> d90bd479380c659204861e870ca8b943b29ca592
 import java.util.Collection;
 import java.util.Objects;
 
