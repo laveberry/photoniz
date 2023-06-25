@@ -27,7 +27,7 @@ public class PhotoBoardController {
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 
-    @GetMapping("/{boardId}")
+    @GetMapping("/detail/{boardId}")
     public BasicResponse boardDetail(@PathVariable Integer boardId) {
         return BasicResponse.toResponse(HttpStatus.OK, photoBoardService.findBoardDetail(boardId));
     }
