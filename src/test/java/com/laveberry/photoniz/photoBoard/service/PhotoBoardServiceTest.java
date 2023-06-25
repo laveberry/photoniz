@@ -5,6 +5,7 @@ import com.laveberry.photoniz.common.model.BasicResponse;
 import com.laveberry.photoniz.photoBoard.domain.PhotoBoard;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.photoBoard.model.CreatePhotoBoardModel;
+import com.laveberry.photoniz.photoBoard.model.PhotoBoardDetailModel;
 import com.laveberry.photoniz.photoBoard.model.PhotoBoardListModel;
 import com.laveberry.photoniz.photoBoard.repository.PhotoBoardRepository;
 import com.laveberry.photoniz.work.enums.WorkType;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -42,6 +45,14 @@ class PhotoBoardServiceTest extends BaseSpringBootTest {
         //then
         assertThat(photoBoardList.getSize()).isEqualTo(10);
         assertThat(photoBoardList.get().findFirst().get().boardId()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("사진 게시판 상세조회")
+    void boardDetailTest(){
+        Optional<PhotoBoard> boardDetail = photoBoardRepository.findBoardDetail(1);
+        assertThat(boardDetail.get().getId()).isEqualTo(1);
+        System.out.println("제목 조회 ===> " + boardDetail.get().getTitle());
     }
 
     @Test
