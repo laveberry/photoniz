@@ -28,7 +28,7 @@ public class BoardController {
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 
-    @GetMapping("/{boardId}")
+    @GetMapping("/detail/{boardId}")
     public BasicResponse boardDetail(@PathVariable Integer boardId) {
         return BasicResponse.toResponse(HttpStatus.OK, boardService.findBoardDetail(boardId));
     }

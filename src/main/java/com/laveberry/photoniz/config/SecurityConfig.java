@@ -37,7 +37,8 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .httpBasic().disable()
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/v1/user/signUp", "/v1/user/signIn", "/v1/photoBoard/list", "/v1/photoBoard/detail").permitAll() // 이 요청은 허용 (회원가입, 로그인)
+                        request.requestMatchers("/v1/user/signUp", "/v1/user/signIn",
+                                        "/v1/photoBoard/list", "/v1/photoBoard/detail/**").permitAll() // 이 요청은 허용 (회원가입, 로그인)
                                 .anyRequest().authenticated()) // 모든 권한은 인증되어야 함
                 .logout(Customizer.withDefaults()) // 로그아웃시
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
