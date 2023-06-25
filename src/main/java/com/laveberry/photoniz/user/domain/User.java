@@ -4,8 +4,11 @@ import com.laveberry.photoniz.user.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -39,24 +42,6 @@ public class User implements UserDetails {
     @Embedded
     private Address address;
 
-    public void updateNickName(String nickName) {
-        if (Objects.nonNull(nickName)) {
-            this.nickName = nickName;
-        }
-    }
-
-    public void updatePhone(String phone) {
-        if (Objects.nonNull(phone)) {
-            this.phone = phone;
-        }
-    }
-
-    public void updateAddress(Address address) {
-        if (Objects.nonNull(address)) {
-            this.address = address;
-        }
-    }
-
     public void updatePassword(String password) {
         if (Objects.nonNull(password)) {
             this.password = password;
@@ -70,7 +55,7 @@ public class User implements UserDetails {
     // 권한 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.getRole().toString()));
     }
 
     // 사용자 id를 반환
@@ -101,5 +86,23 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void updateNickName(String nickName) {
+        if (Objects.nonNull(nickName)) {
+            this.nickName = nickName;
+        }
+    }
+
+    public void updatePhone(String phone) {
+        if (Objects.nonNull(phone)) {
+            this.phone = phone;
+        }
+    }
+
+    public void updateAddress(Address address) {
+        if (Objects.nonNull(address)) {
+            this.address = address;
+        }
     }
 }
