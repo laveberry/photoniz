@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.config.jwt;
 
+import com.laveberry.photoniz.exception.ExceptionType;
 import com.laveberry.photoniz.user.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -25,14 +26,19 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        // 헤더에서 JWT 토큰 받아옴
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
-        // 유효한 토큰인지 확인
-        if (token != null && jwtTokenProvider.validateToken(token)) {
-            // 토큰이 유효하면 토큰으로부터 유저 정보 받기
-            Authentication authentication = jwtTokenProvider.getAuthentication(token);
-            // SecurityContext 에 Authentication 객체를 저장
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            // 헤더에서 JWT 토큰 받아옴
+            String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
+            // 유효한 토큰인지 확인
+            if (token != null && jwtTokenProvider.validateToken(token)) {
+                // 토큰이 유효하면 토큰으로부터 유저 정보 받기
+                Authentication authentication = jwtTokenProvider.getAuthentication(token);
+                // SecurityContext 에 Authentication 객체를 저장
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (Exception e) {
+            log.error("Exception Message : {}", e.getMessage());
+            request.setAttribute("exception", ExceptionType.NOT_AUTHORIZED_TOKEN);
         }
         chain.doFilter(request, response);
     }
