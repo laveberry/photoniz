@@ -17,11 +17,11 @@ public class WorkSaveRequestDto {
 
     private Integer authorId; //작가아이디
     private String workType; //작업유형
-    private double price; //가격
+    private Integer price; //가격
     private String location;
 
     @Builder
-    public WorkSaveRequestDto(Integer authorId, String workType, double price, String location) {
+    public WorkSaveRequestDto(Integer authorId, String workType, Integer price, String location) {
         this.authorId = authorId;
         this.workType = workType;
         this.price = price;

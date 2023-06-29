@@ -3,6 +3,7 @@ package com.laveberry.photoniz.work.domain;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.contract.model.Contract;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Work extends BaseTimeEntity { //db매칭
     @Id //pk
@@ -22,12 +23,11 @@ public class Work extends BaseTimeEntity { //db매칭
     @Column(nullable = false)
     private Integer authorId; //작가아이디
 
-    @Column(length = 100)
+    @Column(name = "work_type")
     private String workType; //작업유형
 
-    private double price; //가격
+    private Integer price; //가격
 
-    @Column(length = 100)
     private String location; //지역? 작업위치?
 
     //영속성, 고아객체
@@ -35,7 +35,7 @@ public class Work extends BaseTimeEntity { //db매칭
     private List<Contract> contracts = new ArrayList<>();
 
     @Builder
-    public Work(Integer authorId, String workType, double price, String location) {
+    public Work(Integer authorId, String workType, Integer price, String location) {
         this.authorId = authorId;
         this.workType = workType;
         this.price = price;

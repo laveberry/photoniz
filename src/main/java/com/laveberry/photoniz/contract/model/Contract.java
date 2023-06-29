@@ -21,31 +21,36 @@ import java.time.LocalDateTime;
 public class Contract extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer contract_id;
+    @Column(name = "contract_id")
+    private Integer id;
 
     //외래키
-    private Integer user_id;
+    @Column(name = "user_id")
+    private Integer userId;
 
     //외래키
     //private Integer work_id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "WORK_ID")
+    @JoinColumn(name = "work_id")
     private Work work;
 
     @ColumnDefault("0") //대기0, 진행1, 정지9, 완료10
-    private int work_progress;
+    @Column(name = "work_progress")
+    private int workProgress;
 
-    private LocalDateTime start_date;
+    @Column(name = "start_date")
+    private LocalDateTime startDate;
 
-    private LocalDateTime end_date;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
     @Builder
 
-    public Contract(Integer user_id, Work work, int work_progress, LocalDateTime start_date, LocalDateTime end_date) {
-        this.user_id = user_id;
+    public Contract(Integer userId, Work work, int workProgress, LocalDateTime startDate, LocalDateTime endDate) {
+        this.userId = userId;
         this.work = work;
-        this.work_progress = work_progress;
-        this.start_date = start_date;
-        this.end_date = end_date;
+        this.workProgress = workProgress;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 }
