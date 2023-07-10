@@ -13,6 +13,7 @@ import java.util.Objects;
 public enum MainType {
 
     PHOTO("PHOTO"),
+    AUTHOR("AUTHOR"),
     MODEL("MODEL"),
     EDIT("EDIT"),
     PAINTING("PAINTING");

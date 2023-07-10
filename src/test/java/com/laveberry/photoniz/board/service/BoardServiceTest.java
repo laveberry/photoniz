@@ -35,7 +35,7 @@ class BoardServiceTest extends BaseSpringBootTest {
         Pageable pageable = PageRequest.of(0, 10, sort);
 
         //when
-        Page<BoardListModel> boardList = boardService.findBoardList("NORMAL", pageable); //NORMAL 타입의 게시물 조회
+        Page<BoardListModel> boardList = boardService.findBoardList("NORMAL", "AUTHOR", pageable); //NORMAL 타입의 게시물 조회
 
         //then
         assertThat(boardList.getSize()).isEqualTo(10);
@@ -45,7 +45,7 @@ class BoardServiceTest extends BaseSpringBootTest {
     @Test
     @DisplayName("게시물 생성")
     void createBoard() {
-        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA");
+        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA", "AUTHOR");
 
         Board board = Board.builder()
                 .title(createBoardModel.title())

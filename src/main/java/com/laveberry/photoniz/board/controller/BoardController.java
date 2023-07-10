@@ -22,9 +22,9 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public BasicResponse boardList(@RequestParam String type, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public BasicResponse boardList(@RequestParam String type, @RequestParam String mainType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        Page<BoardListModel> boardList = boardService.findBoardList(type, pageable);
+        Page<BoardListModel> boardList = boardService.findBoardList(type, mainType, pageable);
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 

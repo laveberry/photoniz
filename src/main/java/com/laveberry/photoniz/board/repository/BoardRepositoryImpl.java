@@ -2,6 +2,7 @@ package com.laveberry.photoniz.board.repository;
 
 import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.enums.BoardType;
+import com.laveberry.photoniz.photoBoard.enums.MainType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public Page<Board> findBoardList(BoardType type, Pageable pageable) {
-        return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, pageable);
+    public Page<Board> findBoardList(BoardType type, MainType mainType, Pageable pageable) {
+        return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, mainType, pageable);
     }
 
     @Override

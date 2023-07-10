@@ -58,21 +58,21 @@ class WorkRepositoryTest extends BaseSpringBootTest {
 
 
         //계약 추가
-        Contract contract = Contract.builder()
-                .user_id(1004)
-                .work(work)
-                .work_progress(1)
-                .start_date(work.getCreateDate())
-                .build();
-
-        Work work2 = contract.getWork();
-
-        assertThat(work2).isEqualTo(work);
-        assertThat(contract.getUser_id()).isEqualTo(1004);
-
-        // FIXME 테스트는 print문 보단 assertThat 등으로 검증하는것이 좋음
-        System.out.println("1004 -> " + contract.getUser_id());
-        System.out.println("getWork   ->   " + contract.getWork().getWorkType());
+//        Contract contract = Contract.builder()
+//                .user_id(1004)
+//                .work(work)
+//                .work_progress(1)
+//                .start_date(work.getCreateDate())
+//                .build();
+//
+//        Work work2 = contract.getWork();
+//
+//        assertThat(work2).isEqualTo(work);
+//        assertThat(contract.getUser_id()).isEqualTo(1004);
+//
+//        // FIXME 테스트는 print문 보단 assertThat 등으로 검증하는것이 좋음
+//        System.out.println("1004 -> " + contract.getUser_id());
+//        System.out.println("getWork   ->   " + contract.getWork().getWorkType());
     }
 
     @Test

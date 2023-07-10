@@ -7,6 +7,7 @@ import com.laveberry.photoniz.board.repository.BoardRepository;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
+import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.repository.UserRepository;
@@ -42,13 +43,14 @@ public class BoardServiceImpl implements BoardService {
                 board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType());
     }
 
+
     @Override
-    public Page<BoardListModel> findBoardList(String type, Pageable pageable) {
+    public Page<BoardListModel> findBoardList(String type, String mainType, Pageable pageable) {
 
         //TODO 페이지 관련 추가 처리 필요
-        return boardRepository.findBoardList(BoardType.getType(type), pageable).map(board ->
+        return boardRepository.findBoardList(BoardType.getType(type), MainType.getMainType(mainType), pageable).map(board ->
                 new BoardListModel(board.getId(), board.getUser().getNickName(), board.getTitle(),
-                        board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType()));
+                        board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType(), board.getMainType()));
     }
 
     @Override
