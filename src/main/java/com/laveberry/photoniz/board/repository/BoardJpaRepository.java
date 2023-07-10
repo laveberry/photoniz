@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface BoardJpaRepository extends JpaRepository<Board, Integer> {
-    Page<Board> findByTypeAndDeleteYnIsFalseOrderById(BoardType type, MainType mainType, Pageable pageable);
+    Page<Board> findByTypeAndMainTypeAndDeleteYnIsFalseOrderById(BoardType type, MainType mainType, Pageable pageable);
 
     Optional<Board> findByIdAndDeleteYnIsFalse(Integer id);
 }

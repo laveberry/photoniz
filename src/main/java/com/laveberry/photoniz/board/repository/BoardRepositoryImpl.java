@@ -24,7 +24,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     @Override
     public Page<Board> findBoardList(BoardType type, MainType mainType, Pageable pageable) {
-        return boardJpaRepository.findByTypeAndDeleteYnIsFalseOrderById(type, mainType, pageable);
+        return boardJpaRepository.findByTypeAndMainTypeAndDeleteYnIsFalseOrderById(type, mainType, pageable);
     }
 
     @Override

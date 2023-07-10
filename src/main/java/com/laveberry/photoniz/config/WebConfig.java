@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.config;
 
+import com.laveberry.photoniz.config.jwt.CustomAccessDeniedHandler;
 import com.laveberry.photoniz.config.jwt.JwtAuthenticationEntryPoint;
 import com.laveberry.photoniz.config.jwt.JwtAuthenticationFilter;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
@@ -26,13 +27,14 @@ public class WebConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling().accessDeniedHandler(jwtAuthenticationEntryPoint)
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .formLogin().disable()

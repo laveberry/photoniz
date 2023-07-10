@@ -43,7 +43,7 @@ class BoardControllerTest extends BaseSpringBootTest {
         //when
 
         //then
-        mockMvc.perform(get("/v1/board/list?type={type}", NORMAL_TYPE)
+        mockMvc.perform(get("/v1/board/list?type={type}&mainType={mainType}", NORMAL_TYPE, MAIN_TYPE)
                         .header(HttpHeaders.AUTHORIZATION, token)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -65,6 +65,11 @@ class BoardControllerTest extends BaseSpringBootTest {
                         .content(objectMapper.writeValueAsString(createBoardModel)))
                 .andExpect(status().isOk())
                 .andDo(print());
+    }
+
+    @Test
+    void getRoleByValue() {
+        Role role = Role.valueOf("ADMIN");
     }
 
 }
