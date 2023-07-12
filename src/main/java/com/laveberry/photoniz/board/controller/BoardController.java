@@ -21,6 +21,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    //mainType null처리 querydsl필요
     @GetMapping("/list")
     public BasicResponse boardList(@RequestParam String type, @RequestParam String mainType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
