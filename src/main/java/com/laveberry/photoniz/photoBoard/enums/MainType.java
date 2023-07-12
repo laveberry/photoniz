@@ -12,6 +12,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public enum MainType {
 
+    ALL("ALL"),
     PHOTO("PHOTO"),
     AUTHOR("AUTHOR"),
     MODEL("MODEL"),

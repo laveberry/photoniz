@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @Repository
 @RequiredArgsConstructor
-public class QBoardRepositoryImpl implements QBoardRepository{
+public class QBoardRepositoryImpl implements QBoardRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
@@ -58,7 +58,7 @@ public class QBoardRepositoryImpl implements QBoardRepository{
     }
 
     private BooleanExpression mainTypeExist(MainType mainType) {
-        if (Objects.nonNull(mainType)) {
+        if (Objects.nonNull(mainType) && mainType != MainType.ALL) {
             return board.mainType.eq(mainType);
         } else {
             return null;
@@ -67,7 +67,6 @@ public class QBoardRepositoryImpl implements QBoardRepository{
 
     private OrderSpecifier<?> boardSort(Pageable pageable) {
         if (!pageable.getSort().isEmpty()) {
-
             for (Sort.Order order : pageable.getSort()) {
                 Order direction = order.getDirection().isAscending() ? Order.ASC : Order.DESC;
                 switch (order.getProperty()) {

@@ -44,6 +44,21 @@ class BoardServiceTest extends BaseSpringBootTest {
     }
 
     @Test
+    @DisplayName("게시물 리스트 조회")
+    void boardListWithMainTypeNull() {
+        //given
+        Sort sort = Sort.by(Sort.Direction.ASC, "id"); //오름차순 정렬
+        Pageable pageable = PageRequest.of(0, 10, sort);
+
+        //when
+        Page<BoardListModel> boardList = boardService.findBoardList("NORMAL", "ALL", pageable); //NORMAL 타입의 게시물 조회
+
+        //then
+        assertThat(boardList.getSize()).isEqualTo(10);
+        assertThat(boardList.get().findFirst().get().boardId()).isEqualTo(1);
+    }
+
+    @Test
     @Disabled
     @DisplayName("게시물 생성")
     void createBoard() {
