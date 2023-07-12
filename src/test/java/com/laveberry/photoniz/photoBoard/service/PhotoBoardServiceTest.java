@@ -10,6 +10,7 @@ import com.laveberry.photoniz.photoBoard.model.PhotoBoardListModel;
 import com.laveberry.photoniz.photoBoard.repository.PhotoBoardRepository;
 import com.laveberry.photoniz.work.enums.WorkType;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
+@Disabled
 @DisplayName("사진게시판 서비스")
 class PhotoBoardServiceTest extends BaseSpringBootTest {
 

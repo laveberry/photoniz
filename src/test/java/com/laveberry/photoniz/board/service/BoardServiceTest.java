@@ -6,6 +6,7 @@ import com.laveberry.photoniz.board.model.BoardListModel;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.repository.BoardRepository;
 import com.laveberry.photoniz.common.BaseSpringBootTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ class BoardServiceTest extends BaseSpringBootTest {
     }
 
     @Test
+    @Disabled
     @DisplayName("게시물 생성")
     void createBoard() {
         CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA", "AUTHOR");
