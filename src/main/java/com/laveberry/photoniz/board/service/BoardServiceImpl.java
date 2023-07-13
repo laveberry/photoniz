@@ -11,6 +11,7 @@ import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.repository.UserRepository;
+import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -45,12 +46,12 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
-    public Page<BoardListModel> findBoardList(String type, String mainType, Pageable pageable) {
+    public Page<BoardListModel> findBoardList(String type, String mainType, String workType, Pageable pageable) {
 
         //TODO 페이지 관련 추가 처리 필요
-        return boardRepository.findBoardList(BoardType.getType(type), MainType.getMainType(mainType), pageable).map(board ->
+        return boardRepository.findBoardList(BoardType.getType(type), MainType.getMainType(mainType), WorkType.getWorkType(workType), pageable).map(board ->
                 new BoardListModel(board.getId(), board.getUser().getNickName(), board.getTitle(),
-                        board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType(), board.getMainType()));
+                        board.getReadCount(), board.getCreateDate(), board.getModifiedDate(), board.getType(), board.getMainType(), board.getWorkType()));
     }
 
     @Override

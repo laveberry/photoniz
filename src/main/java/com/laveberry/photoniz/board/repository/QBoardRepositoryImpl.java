@@ -4,6 +4,7 @@ import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.domain.QBoard;
 import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.work.enums.WorkType;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -35,11 +36,12 @@ public class QBoardRepositoryImpl implements QBoardRepository {
     }
 
     @Override
-    public Page<Board> findBoardListByTypes(BoardType type, MainType mainType, Pageable pageable) {
+    public Page<Board> findBoardListByTypes(BoardType type, MainType mainType, WorkType workType, Pageable pageable) {
         List<Board> boardList = jpaQueryFactory.selectFrom(board)
                 .from(board)
                 .where(board.type.eq(type),
                         mainTypeExist(mainType),
+                        workTypeExist(workType),
                         board.deleteYn.isFalse())
                 .orderBy(boardSort(pageable))
                 .offset(pageable.getOffset())
@@ -60,6 +62,14 @@ public class QBoardRepositoryImpl implements QBoardRepository {
     private BooleanExpression mainTypeExist(MainType mainType) {
         if (Objects.nonNull(mainType) && mainType != MainType.ALL) {
             return board.mainType.eq(mainType);
+        } else {
+            return null;
+        }
+    }
+
+    private BooleanExpression workTypeExist(WorkType workType){
+        if(Objects.nonNull(workType) && workType != WorkType.ALL){
+            return board.workType.eq(workType);
         } else {
             return null;
         }

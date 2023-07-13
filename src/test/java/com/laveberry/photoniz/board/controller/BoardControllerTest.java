@@ -6,6 +6,7 @@ import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.enums.Role;
+import com.laveberry.photoniz.work.enums.WorkType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ class BoardControllerTest extends BaseSpringBootTest {
     private static final String AUTHORIZATION = "Authorization";
     private static final String NORMAL_TYPE = BoardType.NORMAL.getType();
     private static final String MAIN_TYPE = MainType.AUTHOR.getType();
+    private static final String WORK_TYPE = WorkType.BODY.getValue();
     private static String token;
 
     @BeforeEach
@@ -55,7 +57,7 @@ class BoardControllerTest extends BaseSpringBootTest {
     void createBoard() throws Exception {
 
         //given
-        CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE);
+        CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE, WORK_TYPE);
 
         //when
         //then

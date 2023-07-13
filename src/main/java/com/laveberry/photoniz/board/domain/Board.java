@@ -4,6 +4,7 @@ import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
+import com.laveberry.photoniz.work.enums.WorkType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,9 @@ public class Board extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private MainType mainType;
+
+    @Enumerated(EnumType.STRING)
+    private WorkType workType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

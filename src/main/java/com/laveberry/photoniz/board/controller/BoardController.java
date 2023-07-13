@@ -5,6 +5,7 @@ import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.model.UpdateBoardModel;
 import com.laveberry.photoniz.board.service.BoardService;
 import com.laveberry.photoniz.common.model.BasicResponse;
+import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,9 +24,9 @@ public class BoardController {
 
     //mainType null처리 querydsl필요
     @GetMapping("/list")
-    public BasicResponse boardList(@RequestParam String type, @RequestParam String mainType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public BasicResponse boardList(@RequestParam String type, @RequestParam String mainType, @RequestParam String workType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-        Page<BoardListModel> boardList = boardService.findBoardList(type, mainType, pageable);
+        Page<BoardListModel> boardList = boardService.findBoardList(type, mainType, workType, pageable);
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 

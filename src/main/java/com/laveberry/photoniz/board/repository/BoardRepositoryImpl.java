@@ -3,6 +3,7 @@ package com.laveberry.photoniz.board.repository;
 import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +24,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public Page<Board> findBoardList(BoardType type, MainType mainType, Pageable pageable) {
-        return qBoardRepository.findBoardListByTypes(type, mainType, pageable); // querydsl 호출로 변환
+    public Page<Board> findBoardList(BoardType type, MainType mainType, WorkType workType, Pageable pageable) {
+        return qBoardRepository.findBoardListByTypes(type, mainType, workType, pageable); // querydsl 호출로 변환
 //        return boardJpaRepository.findByTypeAndMainTypeAndDeleteYnIsFalseOrderById(type, mainType, pageable);
     }
 

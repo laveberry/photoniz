@@ -12,6 +12,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public enum WorkType {
 
+    ALL("ALL"),
     WEDDING("WEDDING"),
     BODY("BODY"),
     PERSONAL("PERSONAL");

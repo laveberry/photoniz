@@ -13,7 +13,7 @@ public interface BoardService {
 
     BoardDetailModel findBoardDetail(Integer boardId);
 
-    Page<BoardListModel> findBoardList(String type, String mainType, Pageable pageable);
+    Page<BoardListModel> findBoardList(String type, String mainType, String workType, Pageable pageable);
 
     Board createBoard(CreateBoardModel createBoardModel, String token);
 
