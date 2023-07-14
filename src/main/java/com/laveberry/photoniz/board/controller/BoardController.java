@@ -24,8 +24,8 @@ public class BoardController {
 
     //mainType null처리 querydsl필요
     @GetMapping("/list")
-    public BasicResponse boardList(@RequestParam String type, @RequestParam String mainType, @RequestParam String workType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-
+    public BasicResponse boardList(@RequestParam String type, @RequestParam(defaultValue = "ALL") String mainType, @RequestParam(defaultValue = "ALL")
+                                    String workType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<BoardListModel> boardList = boardService.findBoardList(type, mainType, workType, pageable);
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
