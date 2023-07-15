@@ -24,21 +24,18 @@ public class FileUploader {
 
     private final static String DELIMITER = File.separator;
 
-    public Map<String, String> upload(String fileName, MultipartFile multipartFile) {
-        String result = "";
+    public String upload(String fileName, MultipartFile multipartFile) {
         Map<String, String> map = new HashMap<>();
         final String fileFullName = basicPath + DELIMITER + fileName;
 
         try {
             Files.createDirectories(Paths.get(basicPath));
             multipartFile.transferTo(new File(fileFullName));
-            result = "OK";
-            map.put("path", basicPath);
-            map.put("result", result);
+
         } catch (IOException e) {
             log.error("파일 업로드 실패 : ", e);
             throw new CustomException(ExceptionType.SIGN_IN_FAILED);
         }
-        return map;
+        return fileFullName;
     }
 }

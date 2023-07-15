@@ -39,8 +39,6 @@ public class BoardServiceImpl implements BoardService {
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    private final FileUploader fileUploader;
-
     @Override
     public BoardDetailModel findBoardDetail(Integer boardId) {
 
@@ -80,34 +78,6 @@ public class BoardServiceImpl implements BoardService {
                 .deleteYn(false)
                 .user(user)
                 .build();
-
-
-        //이미지 업로드
-        if(!createBoardModel.multipartFile().isEmpty()){
-
-            // 리팩토링 필요
-            for(MultipartFile file : createBoardModel.multipartFile()){
-                // 변경 파일이름으로 서버 저장
-                int dot = file.getName().lastIndexOf(".");
-                String ext = (file.getName().toLowerCase()).substring(dot, file.getName().length());
-                String reFileName = LocalDateTime.now() + "." + ext;
-
-                log.info("orgin = {}, rename = {}" , file.getName(), reFileName);
-
-                Map<String, String> upload = fileUploader.upload(reFileName, file);
-
-                if(upload.get("result").equals("OK")){
-                    Photo photo = Photo.builder()
-                            .photoName(reFileName)
-                            .photoOriginName(file.getOriginalFilename())
-                            .ext(ext)
-                            .photoUrl(upload.get("path"))
-                            .photoSize(file.getSize())
-                            .board(board)
-                            .build();
-                }
-            }
-        }
 
         return boardRepository.save(board);
     }

@@ -1,10 +1,12 @@
 package com.laveberry.photoniz.board.controller;
 
+import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.model.BoardListModel;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.model.UpdateBoardModel;
 import com.laveberry.photoniz.board.service.BoardService;
 import com.laveberry.photoniz.common.model.BasicResponse;
+import com.laveberry.photoniz.photo.service.PhotoService;
 import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,8 +23,8 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
 
     private final BoardService boardService;
+    private final PhotoService photoService;
 
-    //mainType null처리 querydsl필요
     @GetMapping("/list")
     public BasicResponse boardList(@RequestParam String type, @RequestParam(defaultValue = "ALL") String mainType, @RequestParam(defaultValue = "ALL")
                                     String workType, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -37,7 +39,11 @@ public class BoardController {
 
     @PostMapping
     public BasicResponse createBoard(@RequestHeader("Authorization") String token, @RequestBody CreateBoardModel createBoardModel) {
-        return BasicResponse.toResponse(HttpStatus.CREATED, boardService.createBoard(createBoardModel, token).getId());
+        Board board = boardService.createBoard(createBoardModel, token);
+        if(!createBoardModel.multipartFile().isEmpty()){
+            photoService.imgUpload(createBoardModel, board);
+        }
+        return BasicResponse.toResponse(HttpStatus.CREATED, board.getId());
     }
 
     @PutMapping
