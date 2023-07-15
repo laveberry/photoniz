@@ -1,5 +1,6 @@
 package com.laveberry.photoniz.photo.domain;
 
+import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.user.domain.User;
@@ -21,6 +22,11 @@ public class Photo extends BaseTimeEntity {
     @Column(name = "photo_name")
     private String photoName;
 
+    @Column(name = "photo_origin_name")
+    private String photoOriginName;
+
+    private String ext; // 확장자
+
     @Column(name = "photo_url")
     private String photoUrl;
 
@@ -35,8 +41,22 @@ public class Photo extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User writer;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User customer;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "work_id")
     private Work work;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
+
+
 
 }

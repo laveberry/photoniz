@@ -4,9 +4,13 @@ import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.board.model.*;
 import com.laveberry.photoniz.board.repository.BoardRepository;
+import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
+import com.laveberry.photoniz.files.domain.Files;
+import com.laveberry.photoniz.photo.domain.Photo;
+import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.photoBoard.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
@@ -14,10 +18,16 @@ import com.laveberry.photoniz.user.repository.UserRepository;
 import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -28,6 +38,8 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
+
+    private final FileUploader fileUploader;
 
     @Override
     public BoardDetailModel findBoardDetail(Integer boardId) {
@@ -63,10 +75,39 @@ public class BoardServiceImpl implements BoardService {
                 .title(createBoardModel.title())
                 .content(createBoardModel.content())
                 .type(BoardType.getType(createBoardModel.type()))
+                .workType(WorkType.getWorkType(createBoardModel.workType()))
                 .readCount(0)
                 .deleteYn(false)
                 .user(user)
                 .build();
+
+
+        //이미지 업로드
+        if(!createBoardModel.multipartFile().isEmpty()){
+
+            // 리팩토링 필요
+            for(MultipartFile file : createBoardModel.multipartFile()){
+                // 변경 파일이름으로 서버 저장
+                int dot = file.getName().lastIndexOf(".");
+                String ext = (file.getName().toLowerCase()).substring(dot, file.getName().length());
+                String reFileName = LocalDateTime.now() + "." + ext;
+
+                log.info("orgin = {}, rename = {}" , file.getName(), reFileName);
+
+                Map<String, String> upload = fileUploader.upload(reFileName, file);
+
+                if(upload.get("result").equals("OK")){
+                    Photo photo = Photo.builder()
+                            .photoName(reFileName)
+                            .photoOriginName(file.getOriginalFilename())
+                            .ext(ext)
+                            .photoUrl(upload.get("path"))
+                            .photoSize(file.getSize())
+                            .board(board)
+                            .build();
+                }
+            }
+        }
 
         return boardRepository.save(board);
     }

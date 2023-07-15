@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @PostMapping
-    public BasicResponse createBoard(@RequestHeader("Authorization") String token, @RequestBody @Validated CreateBoardModel createBoardModel) {
+    public BasicResponse createBoard(@RequestHeader("Authorization") String token, @RequestBody CreateBoardModel createBoardModel) {
         return BasicResponse.toResponse(HttpStatus.CREATED, boardService.createBoard(createBoardModel, token).getId());
     }
 
