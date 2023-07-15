@@ -20,10 +20,10 @@ class WorkRepositoryTest extends BaseSpringBootTest {
     @Autowired
     private WorkRepository workRepository;
 
-    @AfterEach
-    public void cleanup() {
-        workRepository.deleteAll();
-    }
+//    @AfterEach
+//    public void cleanup() {
+//        workRepository.deleteAll();
+//    }
 
     @Test
     void WorkEntity_등록() {

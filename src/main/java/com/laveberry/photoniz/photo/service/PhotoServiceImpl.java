@@ -4,6 +4,7 @@ import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.photo.domain.Photo;
+import com.laveberry.photoniz.photo.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,17 +19,21 @@ import java.util.UUID;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class PhotoServiceImpl implements PhotoService{
-    FileUploader fileUploader;
+public class PhotoServiceImpl implements PhotoService {
+
+    private final PhotoRepository photoRepository;
+    private final FileUploader fileUploader;
+
     @Override
     public void imgUpload(CreateBoardModel createBoardModel, Board board) {
-        for(MultipartFile file : createBoardModel.multipartFile()){
+
+        for (MultipartFile file : createBoardModel.multipartFile()) {
             // 변경 파일이름으로 서버 저장
             int dot = file.getName().lastIndexOf(".");
             String ext = (file.getName().toLowerCase()).substring(dot, file.getName().length());
-            String reFileName = LocalDateTime.now() + UUID.randomUUID().toString() + "." + ext;
+            String reFileName = UUID.randomUUID() + "." + ext;
 
-            log.info("orgin = {}, rename = {}" , file.getName(), reFileName);
+            log.info("orgin = {}, rename = {}", file.getName(), reFileName);
 
             String uploadPath = fileUploader.upload(reFileName, file);
 
@@ -40,6 +45,8 @@ public class PhotoServiceImpl implements PhotoService{
                     .photoSize(file.getSize())
                     .board(board)
                     .build();
+
+            photoRepository.save(photo);
         }
     }
 }

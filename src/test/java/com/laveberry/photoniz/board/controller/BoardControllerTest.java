@@ -13,6 +13,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -29,12 +35,6 @@ class BoardControllerTest extends BaseSpringBootTest {
     private static final String NORMAL_TYPE = BoardType.NORMAL.getType();
     private static final String MAIN_TYPE = MainType.AUTHOR.getType();
     private static final String WORK_TYPE = WorkType.BODY.getValue();
-    private static String token;
-
-    @BeforeEach
-    void generateToken() {
-        token = jwtTokenProvider.createToken("test@test.com", Role.USER.getName());
-    }
 
 
     @Test
@@ -56,8 +56,10 @@ class BoardControllerTest extends BaseSpringBootTest {
     @DisplayName("게시물 생성")
     void createBoard() throws Exception {
 
+        List<MultipartFile> list = new ArrayList();
+
         //given
-        CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE, WORK_TYPE);
+        CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE, WORK_TYPE, list);
 
         //when
         //then
@@ -67,11 +69,6 @@ class BoardControllerTest extends BaseSpringBootTest {
                         .content(objectMapper.writeValueAsString(createBoardModel)))
                 .andExpect(status().isOk())
                 .andDo(print());
-    }
-
-    @Test
-    void getRoleByValue() {
-        Role role = Role.valueOf("ADMIN");
     }
 
 }

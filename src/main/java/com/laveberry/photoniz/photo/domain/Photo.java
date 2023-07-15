@@ -17,6 +17,7 @@ public class Photo extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "photo_id")
     private Integer id;
 
     @Column(name = "photo_name")

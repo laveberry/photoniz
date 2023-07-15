@@ -25,7 +25,7 @@ public class FileUploader {
     private final static String DELIMITER = File.separator;
 
     public String upload(String fileName, MultipartFile multipartFile) {
-        Map<String, String> map = new HashMap<>();
+
         final String fileFullName = basicPath + DELIMITER + fileName;
 
         try {

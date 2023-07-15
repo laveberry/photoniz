@@ -5,6 +5,6 @@ import com.laveberry.photoniz.board.model.CreateBoardModel;
 
 public interface PhotoService {
 
-    public void imgUpload(CreateBoardModel createBoardModel, Board board);
+    void imgUpload(CreateBoardModel createBoardModel, Board board);
 
 }

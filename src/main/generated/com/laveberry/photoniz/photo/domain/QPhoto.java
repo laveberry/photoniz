@@ -24,8 +24,12 @@ public class QPhoto extends EntityPathBase<Photo> {
 
     public final com.laveberry.photoniz.common.QBaseTimeEntity _super = new com.laveberry.photoniz.common.QBaseTimeEntity(this);
 
+    public final com.laveberry.photoniz.board.domain.QBoard board;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDate = _super.createDate;
+
+    public final StringPath ext = createString("ext");
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
@@ -33,6 +37,8 @@ public class QPhoto extends EntityPathBase<Photo> {
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
     public final StringPath photoName = createString("photoName");
+
+    public final StringPath photoOriginName = createString("photoOriginName");
 
     public final NumberPath<Long> photoSize = createNumber("photoSize", Long.class);
 
@@ -62,6 +68,7 @@ public class QPhoto extends EntityPathBase<Photo> {
 
     public QPhoto(Class<? extends Photo> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
+        this.board = inits.isInitialized("board") ? new com.laveberry.photoniz.board.domain.QBoard(forProperty("board"), inits.get("board")) : null;
         this.user = inits.isInitialized("user") ? new com.laveberry.photoniz.user.domain.QUser(forProperty("user"), inits.get("user")) : null;
         this.work = inits.isInitialized("work") ? new com.laveberry.photoniz.work.domain.QWork(forProperty("work")) : null;
     }
