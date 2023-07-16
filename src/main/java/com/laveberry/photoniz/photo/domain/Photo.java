@@ -40,14 +40,14 @@ public class Photo extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private PhotoType photoType;
 
-    @Column(name = "main_type")
-    @Enumerated(EnumType.STRING)
-    private MainType mainType;
-
-    @Column(name = "work_type")
-    @Enumerated(EnumType.STRING)
-    private WorkType workType;
-
+//    @Column(name = "main_type")
+//    @Enumerated(EnumType.STRING)
+//    private MainType mainType;
+//
+//    @Column(name = "work_type")
+//    @Enumerated(EnumType.STRING)
+//    private WorkType workType;
+//
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

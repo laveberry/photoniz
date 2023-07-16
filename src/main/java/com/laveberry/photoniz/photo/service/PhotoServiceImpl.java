@@ -6,6 +6,8 @@ import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.photo.domain.Photo;
 import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.photo.repository.PhotoRepository;
+import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,7 @@ public class PhotoServiceImpl implements PhotoService {
         for (MultipartFile file : multipartFile) {
             // 변경 파일이름으로 서버 저장
             int dot = file.getOriginalFilename().lastIndexOf(".");
-            String ext = (file.getOriginalFilename().toLowerCase()).substring(dot + 1, file.getOriginalFilename().length());
+            String ext = file.getOriginalFilename().substring(dot + 1);
             String reFileName = UUID.randomUUID() + "." + ext;
 
             log.info("orgin = {}, rename = {}", file.getName(), reFileName);

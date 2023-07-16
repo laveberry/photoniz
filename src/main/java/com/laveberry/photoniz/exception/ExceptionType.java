@@ -22,6 +22,7 @@ public enum ExceptionType {
     FILE_UPLOAD_FAIL(HttpStatus.BAD_REQUEST, "F1000", "파일 업로드에 실패했습니다."),
     INCORRECT_MAIN_TYPE(HttpStatus.BAD_REQUEST, "T1001", "메인 타입이 적절하지 않습니다."),
     INCORRECT_WORK_TYPE(HttpStatus.BAD_REQUEST, "T1002", "작업 타입이 적절하지 않습니다."),
+    INCORRECT_PHOTO_TYPE(HttpStatus.BAD_REQUEST, "T1003", "사진 타입이 적절하지 않습니다."),
 
     UNKNOWN_EXCEPTION_TYPE(HttpStatus.BAD_GATEWAY, "Z9999", "알 수 없는 예외가 발생했습니다.");
 
