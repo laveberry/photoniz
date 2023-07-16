@@ -8,6 +8,9 @@ spring:
       database-platform: org.hibernate.dialect.H2Dialect
       hibernate:
         default_batch_fetch_size: 100
+  servlet:
+    multipart:
+      enabled: true
 
   flyway:
     enabled: false

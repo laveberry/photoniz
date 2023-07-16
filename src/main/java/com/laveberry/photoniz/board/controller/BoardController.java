@@ -16,6 +16,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,10 +41,11 @@ public class BoardController {
     }
 
     @PostMapping
-    public BasicResponse createBoard(@RequestHeader("Authorization") String token, @RequestBody CreateBoardModel createBoardModel) {
+    public BasicResponse createBoard(@RequestHeader("Authorization") String token
+            , @RequestPart("data") CreateBoardModel createBoardModel, @RequestPart List<MultipartFile> multipartFiles) {
         Board board = boardService.createBoard(createBoardModel, token);
-        if(!createBoardModel.multipartFile().isEmpty()){
-            photoService.imgUpload(createBoardModel, board);
+        if(!multipartFiles.isEmpty()){
+            photoService.imgUpload(createBoardModel, multipartFiles, board);
         }
         return BasicResponse.toResponse(HttpStatus.CREATED, board.getId());
     }

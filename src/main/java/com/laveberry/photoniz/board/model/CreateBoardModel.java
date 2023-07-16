@@ -6,5 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-public record CreateBoardModel(@NotBlank String title, @NotNull String content, @NotNull String type, String mainType, String workType, List<MultipartFile> multipartFile) {
+public record CreateBoardModel(@NotBlank String title, @NotNull String content, @NotNull String type, String mainType, String workType) {
 }

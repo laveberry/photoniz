@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -25,9 +24,9 @@ public class PhotoServiceImpl implements PhotoService {
     private final FileUploader fileUploader;
 
     @Override
-    public void imgUpload(CreateBoardModel createBoardModel, Board board) {
+    public void imgUpload(CreateBoardModel createBoardModel, List<MultipartFile> multipartFile, Board board) {
 
-        for (MultipartFile file : createBoardModel.multipartFile()) {
+        for (MultipartFile file : multipartFile) {
             // 변경 파일이름으로 서버 저장
             int dot = file.getName().lastIndexOf(".");
             String ext = (file.getName().toLowerCase()).substring(dot, file.getName().length());
