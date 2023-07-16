@@ -73,6 +73,7 @@ public class BoardServiceImpl implements BoardService {
                 .title(createBoardModel.title())
                 .content(createBoardModel.content())
                 .type(BoardType.getType(createBoardModel.type()))
+                .mainType(MainType.getMainType(createBoardModel.mainType()))
                 .workType(WorkType.getWorkType(createBoardModel.workType()))
                 .readCount(0)
                 .deleteYn(false)
