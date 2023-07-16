@@ -8,7 +8,6 @@ import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.files.domain.Files;
 import com.laveberry.photoniz.photo.domain.Photo;
 import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.photoBoard.enums.MainType;

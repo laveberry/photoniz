@@ -14,7 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -62,7 +64,8 @@ class BoardServiceTest extends BaseSpringBootTest {
     @Disabled
     @DisplayName("게시물 생성")
     void createBoard() {
-        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA", "AUTHOR", "WEDDING", null);
+
+        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "QNA", "AUTHOR", "WEDDING");
 
         Board board = Board.builder()
                 .title(createBoardModel.title())

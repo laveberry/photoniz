@@ -58,8 +58,6 @@ class BoardControllerTest extends BaseSpringBootTest {
     @DisplayName("게시물 생성")
     void createBoard() throws Exception {
 
-        List<MultipartFile> list = new ArrayList();
-
         //given
         CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE, WORK_TYPE);
 

@@ -38,12 +38,12 @@ class PhotoServiceImplTest extends BaseSpringBootTest {
         MockMultipartFile file = new MockMultipartFile("image.jpg", "test.jpg", "image/jpg",
                 new FileInputStream("src/test/resources/image/test.jpg"));
 
-        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "PHOTO", "ALL", "WEDDING", List.of(file));
+        CreateBoardModel createBoardModel = new CreateBoardModel("제목", "내용", "PHOTO", "ALL", "WEDDING");
 
         Board board = boardService.createBoard(createBoardModel, token);
 
         //when
-        photoService.imgUpload(createBoardModel, board);
+        photoService.imgUpload(createBoardModel, List.of(file) ,board);
 
         //then
     }

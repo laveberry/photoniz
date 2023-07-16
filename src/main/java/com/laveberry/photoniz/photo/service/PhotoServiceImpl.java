@@ -29,9 +29,9 @@ public class PhotoServiceImpl implements PhotoService {
 
         for (MultipartFile file : multipartFile) {
             // 변경 파일이름으로 서버 저장
-            int dot = file.getOriginalFilename().lastIndexOf(".") +1;
-            String ext = (file.getOriginalFilename().toLowerCase()).substring(dot, file.getOriginalFilename().length());
-            String reFileName = UUID.randomUUID().toString() + "." + ext;
+            int dot = file.getOriginalFilename().lastIndexOf(".");
+            String ext = (file.getOriginalFilename().toLowerCase()).substring(dot + 1, file.getOriginalFilename().length());
+            String reFileName = UUID.randomUUID() + "." + ext;
 
             log.info("orgin = {}, rename = {}", file.getName(), reFileName);
 
