@@ -4,6 +4,7 @@ import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.photo.domain.Photo;
+import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.photo.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,11 +38,13 @@ public class PhotoServiceImpl implements PhotoService {
             String uploadPath = fileUploader.upload(reFileName, file);
 
             Photo photo = Photo.builder()
+                    .photoType(PhotoType.MAIN)
                     .photoName(reFileName)
                     .photoOriginName(file.getOriginalFilename())
                     .ext(ext)
                     .photoUrl(uploadPath)
-//                    .photoSize(file.getSize())
+                    .photoSize(file.getSize())
+                    .user(board.getUser())
                     .board(board)
                     .build();
 
