@@ -76,18 +76,15 @@ tasks.named('test') {
 }
 
 // script for querydsl
-def querydslDir = "$buildDir/generated/querydsl"
+def querydslDir = "src/main/generated"
 
-sourceSets {
-	main.java.srcDirs += [ querydslDir ]
+
+tasks.withType(JavaCompile) {
+	options.generatedSourceOutputDirectory = file(querydslDir)
 }
 
-tasks.withType(JavaCompile).configureEach {
-	options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
-}
-
-clean.doLast {
-	file(querydslDir).deleteDir()
+clean {
+	delete file(querydslDir)
 }
 
 configurations {
