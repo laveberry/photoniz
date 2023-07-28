@@ -4,6 +4,11 @@ import com.laveberry.photoniz.common.model.BasicResponse;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.model.*;
 import com.laveberry.photoniz.user.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,14 @@ public class UserController {
 
     private final UserService userService;
 
+    @Operation(summary = "회원 가입", description = "회원 가입을 요청합니다.", tags = {"User Controller"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = @Content(schema = @Schema(implementation = BasicResponse.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR"),
+    })
     @PostMapping("/signUp")
     public BasicResponse signUp(@RequestBody @Validated SignUpModel signUpModel) {
         User user = userService.signUp(signUpModel);
