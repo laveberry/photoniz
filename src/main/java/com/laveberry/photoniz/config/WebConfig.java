@@ -41,8 +41,9 @@ public class WebConfig {
                 .httpBasic().disable()
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/v1/user/signUp", "/v1/user/signIn",
-                                        "/v1/board/list", "/v1/board/detail/**", "/swagger-ui.html").permitAll() // 이 요청은 허용 (회원가입, 로그인)
-                                .anyRequest().authenticated()) // 모든 권한은 인증되어야 함
+                                        "/v1/board/list", "/v1/board/detail/**",
+                                        "/swagger-ui/**","/v3/api-docs/**").permitAll() // 이 요청은 허용 (회원가입, 로그인)
+                                .anyRequest().authenticated())// 모든 권한은 인증되어야 함
                 .logout(Customizer.withDefaults()) // 로그아웃시
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), // jwt 토큰 인증 필터를 먼저 실행
                         UsernamePasswordAuthenticationFilter.class);

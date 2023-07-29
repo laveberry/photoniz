@@ -37,17 +37,41 @@ public class UserController {
         return BasicResponse.toResponse(HttpStatus.ACCEPTED, user.getId());
     }
 
+    @Operation(summary = "로그인(토큰 생성)", description = "로그인을 합니다.", tags = {"User Controller"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = @Content(schema = @Schema(implementation = BasicResponse.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR"),
+    })
     @PostMapping("/signIn")
     public BasicResponse signIn(@RequestBody @Validated SignInModel signInUserModel) {
         SignInResultModel resultModel = userService.signIn(signInUserModel);
         return BasicResponse.toResponse(HttpStatus.OK, resultModel);
     }
 
+    @Operation(summary = "유저 조회", description = "유저를 조회 합니다.", tags = {"User Controller"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = @Content(schema = @Schema(implementation = BasicResponse.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR"),
+    })
     @GetMapping
     public BasicResponse userDetail(@RequestParam String email) {
         return BasicResponse.toResponse(HttpStatus.OK, userService.findUser(email));
     }
 
+    @Operation(summary = "사용자 정보 수정", description = "사용자를 수정 합니다.", tags = {"User Controller"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = @Content(schema = @Schema(implementation = BasicResponse.class))),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR"),
+    })
     @PutMapping
     public BasicResponse updateUser(@RequestBody @Validated UpdateUserModel updateUserModel, @RequestHeader("Authorization") String token) {
         UpdateUserResultModel updateUserResultModel = userService.updateUser(updateUserModel, token);
