@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,8 @@ public class UserController {
         return BasicResponse.toResponse(HttpStatus.OK, resultModel);
     }
 
-    @Operation(summary = "유저 조회", description = "유저를 조회 합니다.", tags = {"User Controller"})
+    @Operation(summary = "유저 조회", description = "유저를 조회 합니다.",
+            tags = {"User Controller"}, security = {@SecurityRequirement(name = "Authorization")})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -64,7 +66,8 @@ public class UserController {
         return BasicResponse.toResponse(HttpStatus.OK, userService.findUser(email));
     }
 
-    @Operation(summary = "사용자 정보 수정", description = "사용자를 수정 합니다.", tags = {"User Controller"})
+    @Operation(summary = "사용자 정보 수정", description = "사용자를 수정 합니다.",
+            tags = {"User Controller"}, security = {@SecurityRequirement(name = "Authorization")})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),

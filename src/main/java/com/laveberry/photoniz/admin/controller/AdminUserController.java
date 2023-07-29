@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,8 @@ public class AdminUserController {
 
     private final AdminUserService adminUserService;
 
-    @Operation(summary = "사용자 삭제", description = "사용자를 삭제합니다(ADMIN)", tags = {"Admin Controller"})
+    @Operation(summary = "사용자 삭제", description = "사용자를 삭제합니다(ADMIN)",
+            tags = {"Admin Controller"}, security = {@SecurityRequirement(name = "Authorization")})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),

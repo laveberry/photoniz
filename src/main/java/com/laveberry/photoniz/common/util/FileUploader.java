@@ -34,7 +34,7 @@ public class FileUploader {
 
         } catch (IOException e) {
             log.error("파일 업로드 실패 : ", e);
-            throw new CustomException(ExceptionType.SIGN_IN_FAILED);
+            throw new CustomException(ExceptionType.FILE_UPLOAD_FAIL);
         }
         return fileFullName;
     }
