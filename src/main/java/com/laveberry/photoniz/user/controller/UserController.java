@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
+@SecurityRequirement(name = "Authorization")
 @RequestMapping("/v1/user")
 @RequiredArgsConstructor
 public class UserController {
@@ -53,7 +54,7 @@ public class UserController {
     }
 
     @Operation(summary = "유저 조회", description = "유저를 조회 합니다.",
-            tags = {"User Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+            tags = {"User Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -67,7 +68,7 @@ public class UserController {
     }
 
     @Operation(summary = "사용자 정보 수정", description = "사용자를 수정 합니다.",
-            tags = {"User Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+            tags = {"User Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),

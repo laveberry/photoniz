@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "Authorization")
 @RequiredArgsConstructor
 @RequestMapping("/v1/board")
 public class BoardController {
@@ -34,8 +35,7 @@ public class BoardController {
     private final BoardService boardService;
     private final PhotoService photoService;
 
-    @Operation(summary = "게시판 리스트 조회", description = "게시판 리스트를 조회 합니다.",
-            tags = {"Board Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+    @Operation(summary = "게시판 리스트 조회", description = "게시판 리스트를 조회 합니다.", tags = {"Board Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -50,8 +50,7 @@ public class BoardController {
         return BasicResponse.toResponse(HttpStatus.OK, boardList);
     }
 
-    @Operation(summary = "게시물 상세 조회", description = "게시물 상세 내용을 조회 합니다.",
-            tags = {"Board Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+    @Operation(summary = "게시물 상세 조회", description = "게시물 상세 내용을 조회 합니다.", tags = {"Board Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -65,7 +64,7 @@ public class BoardController {
     }
 
     @Operation(summary = "게시물 생성", description = "게시물 생성 합니다.",
-            tags = {"Board Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+            tags = {"Board Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -83,8 +82,7 @@ public class BoardController {
         return BasicResponse.toResponse(HttpStatus.CREATED, board.getId());
     }
 
-    @Operation(summary = "게시물 수정", description = "게시물 내용을 수정 합니다.",
-            tags = {"Board Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+    @Operation(summary = "게시물 수정", description = "게시물 내용을 수정 합니다.", tags = {"Board Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
@@ -98,8 +96,7 @@ public class BoardController {
         return BasicResponse.toResponse(HttpStatus.CREATED, boardId);
     }
 
-    @Operation(summary = "게시물 삭제", description = "게시물을 삭제합니다.",
-            tags = {"Board Controller"}, security = {@SecurityRequirement(name = "Authorization")})
+    @Operation(summary = "게시물 삭제", description = "게시물을 삭제합니다.", tags = {"Board Controller"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(schema = @Schema(implementation = BasicResponse.class))),
