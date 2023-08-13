@@ -4,7 +4,7 @@ import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.work.enums.WorkType;
 import org.junit.jupiter.api.BeforeEach;

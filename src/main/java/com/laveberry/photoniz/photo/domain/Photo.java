@@ -3,7 +3,7 @@ package com.laveberry.photoniz.photo.domain;
 import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import com.laveberry.photoniz.photo.enums.PhotoType;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.work.domain.Work;
 import com.laveberry.photoniz.work.enums.WorkType;

@@ -1,7 +1,7 @@
 package com.laveberry.photoniz.board.model;
 
 import com.laveberry.photoniz.board.enums.BoardType;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.work.enums.WorkType;
 
 import java.time.LocalDateTime;

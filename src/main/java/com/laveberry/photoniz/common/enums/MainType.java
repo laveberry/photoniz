@@ -1,4 +1,4 @@
-package com.laveberry.photoniz.photoBoard.enums;
+package com.laveberry.photoniz.common.enums;
 
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;

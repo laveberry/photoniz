@@ -2,7 +2,7 @@ package com.laveberry.photoniz.board.domain;
 
 import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.common.BaseTimeEntity;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.work.enums.WorkType;
 import jakarta.persistence.*;

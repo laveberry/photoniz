@@ -2,7 +2,7 @@ package com.laveberry.photoniz.photo.enums;
 
 import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

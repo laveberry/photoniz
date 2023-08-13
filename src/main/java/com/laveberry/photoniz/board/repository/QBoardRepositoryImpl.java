@@ -3,7 +3,7 @@ package com.laveberry.photoniz.board.repository;
 import com.laveberry.photoniz.board.domain.Board;
 import com.laveberry.photoniz.board.domain.QBoard;
 import com.laveberry.photoniz.board.enums.BoardType;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.work.enums.WorkType;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;

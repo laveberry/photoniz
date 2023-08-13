@@ -10,7 +10,7 @@ import com.laveberry.photoniz.exception.CustomException;
 import com.laveberry.photoniz.exception.ExceptionType;
 import com.laveberry.photoniz.photo.domain.Photo;
 import com.laveberry.photoniz.photo.enums.PhotoType;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.user.domain.User;
 import com.laveberry.photoniz.user.enums.Role;
 import com.laveberry.photoniz.user.repository.UserRepository;

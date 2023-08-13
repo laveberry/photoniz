@@ -6,7 +6,7 @@ import com.laveberry.photoniz.common.util.FileUploader;
 import com.laveberry.photoniz.photo.domain.Photo;
 import com.laveberry.photoniz.photo.enums.PhotoType;
 import com.laveberry.photoniz.photo.repository.PhotoRepository;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import com.laveberry.photoniz.work.enums.WorkType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

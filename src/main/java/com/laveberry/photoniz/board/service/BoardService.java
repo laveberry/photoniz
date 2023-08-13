@@ -5,7 +5,7 @@ import com.laveberry.photoniz.board.model.BoardDetailModel;
 import com.laveberry.photoniz.board.model.BoardListModel;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
 import com.laveberry.photoniz.board.model.UpdateBoardModel;
-import com.laveberry.photoniz.photoBoard.enums.MainType;
+import com.laveberry.photoniz.common.enums.MainType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

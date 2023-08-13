@@ -33,7 +33,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final EnumPath<com.laveberry.photoniz.photoBoard.enums.MainType> mainType = createEnum("mainType", com.laveberry.photoniz.photoBoard.enums.MainType.class);
+    public final EnumPath<com.laveberry.photoniz.common.enums.MainType> mainType = createEnum("mainType", com.laveberry.photoniz.common.enums.MainType.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
