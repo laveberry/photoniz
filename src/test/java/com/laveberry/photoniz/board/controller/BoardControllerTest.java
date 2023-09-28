@@ -2,6 +2,7 @@ package com.laveberry.photoniz.board.controller;
 
 import com.laveberry.photoniz.board.enums.BoardType;
 import com.laveberry.photoniz.board.model.CreateBoardModel;
+import com.laveberry.photoniz.board.model.UpdateBoardModel;
 import com.laveberry.photoniz.common.BaseSpringBootTest;
 import com.laveberry.photoniz.config.jwt.JwtTokenProvider;
 import com.laveberry.photoniz.common.enums.MainType;
@@ -21,8 +22,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,6 +67,22 @@ class BoardControllerTest extends BaseSpringBootTest {
                 .header(HttpHeaders.AUTHORIZATION, token)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createBoardModel)))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("게시물 수정")
+    void updateBoard() throws Exception {
+        // given
+        UpdateBoardModel updateBoardModel = new UpdateBoardModel(1, "testUpdate", "testContentUpdate");
+
+        // when
+        // then
+        mockMvc.perform(put("/v1/board")
+                    .header(HttpHeaders.AUTHORIZATION, token)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(updateBoardModel)))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
