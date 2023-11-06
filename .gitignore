@@ -36,3 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 spy.log
+
+### QueryDSL ###
+src/main/generated/**
