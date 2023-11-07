@@ -19,6 +19,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,19 +55,21 @@ class BoardControllerTest extends BaseSpringBootTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("게시물 생성")
     void createBoard() throws Exception {
 
         //given
         CreateBoardModel createBoardModel = new CreateBoardModel("new_title", "new_content", NORMAL_TYPE, MAIN_TYPE, WORK_TYPE);
+        MockMultipartFile data = new MockMultipartFile("data", "", "application/json", objectMapper.writeValueAsBytes(createBoardModel));
+        MockMultipartFile multipartFiles = new MockMultipartFile("multipartFiles", "test1.txt", "text/plain", "This is a test file 1".getBytes());
 
         //when
         //then
-        mockMvc.perform(post("/v1/board")
-                .header(HttpHeaders.AUTHORIZATION, token)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(createBoardModel)))
+        mockMvc.perform(
+                        multipart("/v1/board")
+                                .file(data)
+                                .file(multipartFiles)
+                                .header(HttpHeaders.AUTHORIZATION, token))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -80,9 +83,9 @@ class BoardControllerTest extends BaseSpringBootTest {
         // when
         // then
         mockMvc.perform(put("/v1/board")
-                    .header(HttpHeaders.AUTHORIZATION, token)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updateBoardModel)))
+                        .header(HttpHeaders.AUTHORIZATION, token)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updateBoardModel)))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
