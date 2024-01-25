@@ -3,14 +3,12 @@ package com.laveberry.photoniz.chat.domain;
 
 import com.laveberry.photoniz.common.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
+@Getter
 @AllArgsConstructor
 public class Chat extends BaseTimeEntity {
 

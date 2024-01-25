@@ -45,7 +45,7 @@ class ChatServiceTest extends BaseSpringBootTest {
 
     @Test
     @DisplayName("채팅파일_등록_실패케이스_OneToOne_fk_확인")
-//    @Transactional
+    @Transactional
     void uploadChatFile() {
         // Given
         ChatFile chatFile = createChatFile("테스트 채팅파일");
@@ -58,12 +58,27 @@ class ChatServiceTest extends BaseSpringBootTest {
         chatFileJpaRepository.save(chatFile);
         chatJpaRepository.saveAll(List.of(chat1, chat2));
 
+        List<Long> allByChatFileId = chatJpaRepository.findChatChatFileId();
+
         // Then
-//        List<Chat> chats = chatJpaRepository.findAll();
-//        assertThat(chats).hasSize(1);
+        List<Chat> chats = chatJpaRepository.findAll();
+        assertThat(chats).hasSize(2);
+
+        for (Chat chat : chats) {
+            System.out.println("chat 첨부 => " + chat.getChatFile().getId());
+        }
+
+        List<Long> chatChatFileId = chatJpaRepository.findChatChatFileId();
+        for (Long aLong : chatChatFileId) {
+            System.out.println("chatChatFileId = > " + aLong);
+        }
+
+
+        chatFileJpaRepository.markChatMessageAttachDeletedAtOlderThan();
+        chatJpaRepository.updateOlderThan();
 
         //삭제일자 update
-        qChatFileRepository.updateDeletedAt(1L, chatFile.getId());
+//        qChatFileRepository.updateDeletedAt(1L, chatFile.getId());
         qChatRepository.updateMaking();
 
         // 데이터 무결성 위반 오류를 발생시키기 위한 삭제 시도
